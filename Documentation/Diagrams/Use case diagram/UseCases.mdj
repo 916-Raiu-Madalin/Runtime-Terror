@@ -7,7 +7,7 @@
 			"_type": "UMLModel",
 			"_id": "AAAAAAFF+qBWK6M3Z8Y=",
 			"_parent": {
-				"$ref": "AAAAAAFF+h6SjaM2Hec="
+				"$ref": "AAAAAAFF+h6SjaM2Hec=" 
 			},
 			"name": "Model",
 			"ownedElements": [
