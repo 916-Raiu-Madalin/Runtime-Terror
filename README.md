@@ -15,7 +15,7 @@ We have been tasked with the development of a System for Managing Academic Infor
 
 # Used technologies
 <ul>
-<li>Database server: MySQL</li>
+<li>Database server: PostgreSQL</li>
 <li>
     <ul>
         Programming language:
