@@ -5,7 +5,7 @@
     <li><a href="https://github.com/916-Raiu-Madalin">Raiu Madalin</a></li>
     <li><a href="https://github.com/mihaidaniel34">Potirniche Mihai</a></li>
     <li><a href="https://github.com/916-Popa-Andrei-Calin">Popa Andrei Calin</a></li>
-    <li><a href="https://github.com/916-Saramet-Andrei">Saramet Andrei</a></li>
+    <li><a href="https://github.com/AndreiSaramet">Saramet Andrei</a></li>
 </ul>
 
 # Presentation of the project requirements
