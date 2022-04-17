@@ -8,9 +8,12 @@ import {
     Avatar,
     Table,
     TableRow,
-    TableCell
+    TableCell,
+    TableBody
 } from "@mui/material"
 import {React,useState, useEffect} from "react"
+
+import userLogo from "../userLogo.png"
 
 const bull = (
     <Box
@@ -43,11 +46,11 @@ const Home = ( ) =>{
         </Typography>
         <Card sx={{ minWidth: 500 ,width: '30%',display: 'flex', flexDirection: 'column'}}>
             <CardContent >
-                <Typography sx={{ fontSize: 24 ,display: 'flex', flexDirection: 'row'}} color="text.secondary" gutterBottom>
+                <Box sx={{display: 'flex', flexDirection: 'row'}} color="text.secondary" gutterBottom>
+                    <Typography sx={{fontSize:24}} gutterBottom>
                     Site News
-
-                    <Typography sx={{width:'70%', textAlign:'right', marginTop:'-3%', marginLeft:'6%'}} >
-                        <p>
+                    </Typography>
+                    <Typography sx={{width:'70%', textAlign:'right', marginLeft:'6%'}} >
                             {dateState.toLocaleString('en-US', {
                                 hour: 'numeric',
                                 minute: 'numeric',
@@ -59,13 +62,12 @@ const Home = ( ) =>{
                                 month: 'short',
                                 year: 'numeric',
                             })}
-                        </p>
                     </Typography>
-                </Typography>
-                <Typography variant="body2">
+                </Box>
                     <Table>
+                        <TableBody>
                         <TableRow>
-                            <TableCell ><Avatar alt="Remy Sharp" src="userLogo.png" />
+                            <TableCell ><Avatar alt="Remy Sharp" src={userLogo} />
                                 <Typography sx={{color:'lightblue'}}>
                                     by Admin User
                                 </Typography>
@@ -77,9 +79,8 @@ const Home = ( ) =>{
                                 </Typography>
                             </TableCell>
                         </TableRow>
-
+                        </TableBody>
                     </Table>
-                </Typography>
 
 
                 <Typography variant="body2" sx={{paddingLeft:5}}>

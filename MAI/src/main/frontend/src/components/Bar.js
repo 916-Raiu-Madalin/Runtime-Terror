@@ -29,6 +29,8 @@ const Bar = () =>{
         setAnchorElUser(null);
     };
     const logout =()=>{
+        localStorage.removeItem('user')
+        localStorage.removeItem('role')
         setAuth({});
         navigate("/")
 

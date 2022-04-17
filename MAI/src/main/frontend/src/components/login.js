@@ -31,7 +31,9 @@ const Login=()=>{
         ).then(response =>{
             setErrMsg('');
             const role = response?.data;
-            setAuth({username, password, role, "logged_in":true})
+            setAuth({username, role, "logged_in":true})
+            localStorage.setItem('user', username)
+            localStorage.setItem('role', role)
             navigate("/")
 
         }).catch(err =>{
