@@ -27,6 +27,7 @@ const Home = ( ) =>{
     useEffect(() => {
         setInterval(() => setDateState(new Date()), 30000);
     }, []);
+
     return(
         <Box
           sx={{
