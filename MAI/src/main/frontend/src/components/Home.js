@@ -1,4 +1,15 @@
-import { Typography, Box, Button, CardContent, Card, CardActions} from "@mui/material"
+import {
+    Typography,
+    Box,
+    Button,
+    CardContent,
+    Card,
+    CardActions,
+    Avatar,
+    Table,
+    TableRow,
+    TableCell
+} from "@mui/material"
 import {React,useState, useEffect} from "react"
 
 const bull = (
@@ -50,10 +61,25 @@ const Home = ( ) =>{
                         </p>
                     </Typography>
                 </Typography>
-                <Typography variant="h5" component="div">
-                    Connection{bull}settings{bull}MAI{bull}
+                <Typography variant="body2">
+                    <Table>
+                        <TableRow>
+                            <TableCell ><Avatar alt="Remy Sharp" src="userLogo.png" />
+                                <Typography sx={{color:'lightblue'}}>
+                                    by Admin User
+                                </Typography>
+                            </TableCell>
+                            <TableCell>
+                                <Typography variant="h5" component="div">
+                                    Connection{bull}settings{bull}MAI{bull}
 
+                                </Typography>
+                            </TableCell>
+                        </TableRow>
+
+                    </Table>
                 </Typography>
+
 
                 <Typography variant="body2" sx={{paddingLeft:5}}>
                     <b>●The teachers assume their responsibilities for the students that enrol in their course</b>
