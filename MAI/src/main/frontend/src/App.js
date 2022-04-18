@@ -25,6 +25,7 @@ function App() {
     </Bar>
     <Routes>
       <Route path="/" element={<Home/>}/>
+      <Route path="/home" element={<Home/>}/>
       <Route path="/login" element={<Login/>}/>
       <Route path="/profile" element={<Profile/>}/>
     </Routes>

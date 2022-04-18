@@ -80,7 +80,7 @@ const Bar = () =>{
                 >
                   {pages.map((page) => (
                     <MenuItem key={page} onClick={handleCloseNavMenu}>
-                      <Typography textAlign="center">{page}</Typography>
+                      <Typography textAlign="center"  component={RouterLink} to={"/"+page.toLowerCase()}>{page}</Typography>
                     </MenuItem>
                   ))}
                 </Menu>
@@ -97,6 +97,7 @@ const Bar = () =>{
                 {pages.map((page) => (
                   <Button
                     key={page}
+                    component={RouterLink} to={"/"+page.toLowerCase()}
                     onClick={handleCloseNavMenu}
                     sx={{ my: 2, color: 'white', display: 'block' }}
                   >
