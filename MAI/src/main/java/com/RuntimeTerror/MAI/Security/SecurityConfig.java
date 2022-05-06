@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // add http.cors()
-        http.cors().and().authorizeRequests()
+        http.cors().and().authorizeRequests().antMatchers("/", "/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic().and().csrf().disable().logout().logoutSuccessUrl("/");

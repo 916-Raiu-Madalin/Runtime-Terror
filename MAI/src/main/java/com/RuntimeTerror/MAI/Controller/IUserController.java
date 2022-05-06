@@ -1,6 +1,7 @@
 package com.RuntimeTerror.MAI.Controller;
 
 import com.RuntimeTerror.MAI.Model.AppUser;
+import com.RuntimeTerror.MAI.Model.Profile;
 import com.RuntimeTerror.MAI.Model.Role;
 
 import java.util.List;
@@ -10,6 +11,7 @@ public interface IUserController {
     Role saveRole(Role role);
     AppUser getUser(String username);
     List<AppUser> getUsers();
-
+    Profile saveProfile(Profile profile);
+    Profile getProfile(String username);
 
 }

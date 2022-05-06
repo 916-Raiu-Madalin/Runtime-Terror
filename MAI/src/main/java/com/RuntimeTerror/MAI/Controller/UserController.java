@@ -1,7 +1,9 @@
 package com.RuntimeTerror.MAI.Controller;
 
 import com.RuntimeTerror.MAI.Model.AppUser;
+import com.RuntimeTerror.MAI.Model.Profile;
 import com.RuntimeTerror.MAI.Model.Role;
+import com.RuntimeTerror.MAI.Repository.ProfileRepository;
 import com.RuntimeTerror.MAI.Repository.RoleRepository;
 import com.RuntimeTerror.MAI.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,7 @@ import java.util.List;
 public class UserController implements IUserController, UserDetailsService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final ProfileRepository profileRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
@@ -30,12 +33,28 @@ public class UserController implements IUserController, UserDetailsService {
 
         String encodedPassword = bCryptPasswordEncoder.encode(appUser.getPassword());
         appUser.setPassword(encodedPassword);
+        saveProfile(new Profile());
         return userRepository.save(appUser);
     }
 
     @Override
     public Role saveRole(Role role) {
         return roleRepository.save(role);
+    }
+
+    @Override
+    public Profile saveProfile(Profile profile){
+        return profileRepository.save(profile);
+    }
+
+    @Override
+    public Profile getProfile(String username) {
+        System.out.println(username);
+        AppUser appUser = userRepository.findByUsername(username);
+        if (appUser == null)
+            throw new UsernameNotFoundException("User not found!");
+        Long id = userRepository.findByUsername(username).getId();
+        return profileRepository.getById(id);
     }
 
     @Override

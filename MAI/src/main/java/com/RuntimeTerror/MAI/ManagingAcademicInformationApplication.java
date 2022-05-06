@@ -3,6 +3,7 @@ package com.RuntimeTerror.MAI;
 import com.RuntimeTerror.MAI.Controller.IUserController;
 
 import com.RuntimeTerror.MAI.Model.AppUser;
+import com.RuntimeTerror.MAI.Model.Profile;
 import com.RuntimeTerror.MAI.Model.Role;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

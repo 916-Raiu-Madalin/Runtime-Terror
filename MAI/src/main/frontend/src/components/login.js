@@ -16,6 +16,7 @@ const Login=()=>{
         const data = new FormData(event.currentTarget)
         let username = data.get('username')
         let password = data.get('password')
+        console.log(username, password)
         axios({
             method:'post',
             url:'/login',
@@ -33,6 +34,7 @@ const Login=()=>{
             const role = response?.data;
             setAuth({username, role, "logged_in":true})
             localStorage.setItem('user', username)
+            localStorage.setItem('password', password)
             localStorage.setItem('role', role)
             navigate("/")
 
@@ -75,7 +77,7 @@ const Login=()=>{
               required
               fullWidth
               id="username"
-              label="Username   "
+              label="Username"
               name="username"
               autoComplete="username"
               autoFocus
