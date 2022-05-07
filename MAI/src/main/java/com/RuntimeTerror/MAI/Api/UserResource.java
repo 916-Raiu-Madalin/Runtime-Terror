@@ -26,7 +26,10 @@ public class UserResource {
         return ResponseEntity.ok().body(profile);
     }
     @PostMapping("/profile")
-    public ResponseEntity<?> setProfile(@RequestBody Map<String, String> profile){
+    public ResponseEntity<?> setProfile(@RequestParam Map<String, String> profile){
+        AppUser user = userController.getUser(profile.get("username"));
+        Profile profile1 = new Profile(user.getId(), user, profile.get("firstname"), profile.get("lastname"), profile.get("email"), profile.get("city"));
+        userController.saveProfile(profile1);
         return ResponseEntity.ok().body(profile);
     }
 }

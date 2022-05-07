@@ -15,13 +15,10 @@ const Profile=()=>{
     const [emailAddress, setEmailAddress] = useState('')
     const [city, setCity] = useState('')
     
+    
     const fetchData = (event) =>{
         event?.preventDefault();
         const loggedIn = auth?.logged_in ? true : false
-        // if(!loggedIn){
-        //     console.log("THOU ARE NOT LOGGED IN");
-        //     return
-        // }
         let username = localStorage.getItem('user');
         let password = localStorage.getItem('password');
         console.log(username, password)
@@ -36,40 +33,49 @@ const Profile=()=>{
                 username:username
             }
         }).then(response =>{
-            console.log(response)
-            setFirstName(response?.firstName)
-            setLastName(response?.lastName)
-            setEmailAddress(response?.emailAddress)
-            setCity(response?.city)
-
+            setFirstName(response.data.firstName)
+            setLastName(response.data.lastName)
+            setEmailAddress(response.data.emailAddress)
+            setCity(response.data.city)
         }).catch(err=>{
             console.log(err)
         })
     }
 
-
     const handleSubmit = (event) =>{
+        var Buffer = require('buffer/').Buffer
+
         event.preventDefault();
         const data = new FormData(event.currentTarget)
-        console.log(data.get('firstname'), data.get('lastname'))
-        // POST('/api/profile', data).then(response=>
-        //     console.log(response?.data))
-        // .catch(err=>
-        //     console.log(err))
+        data.set('username', localStorage.getItem('user'))
+        axios({
+            method: 'post',
+            url: '/api/profile',
+            headers: { 
+                'Authorization': 'Basic '+ Buffer.from(localStorage.getItem('user') + ':' + localStorage.getItem('password')).toString('base64'), 
+                'Content-Type': 'multipart/form-data'
+              },
+            data: data
+                }
+            ).then(response=>
+            console.log(response?.data))
+        .catch(err=>
+            console.log(err))
         
     }
     useMountEffect(fetchData);
 
     return(
         <Container component="main" maxWidth="xl">
-            <Box onSubmit={handleSubmit} component="form" noValidate>
+            <Box onSubmit={handleSubmit} component="form" noValidate>   
                 <TextField
                 margin="normal"
                 fullWidth
                 id="firstname"
                 label="First Name"
                 name="firstname"
-                defaultValue={firstName || ""}
+                value={firstName || ""}
+                onChange={(event) => setFirstName(event.target.value)}
                 autoComplete="firstname"
                 autoFocus
                 />
@@ -79,7 +85,8 @@ const Profile=()=>{
                 id="lastname"
                 label="Last Name"
                 name="lastname"
-                defaultValue={lastName || ""}
+                value={lastName || ""}
+                onChange={(event) => setLastName(event.target.value)}
                 autoComplete="lastname"
                 />
                 <TextField
@@ -88,7 +95,8 @@ const Profile=()=>{
                 id="email"
                 label="Email Address"
                 name="email"
-                defaultValue={emailAddress || ""}
+                value={emailAddress || ""}
+                onChange={(event) => setEmailAddress(event.target.value)}
                 autoComplete="email"
                 />
                 <TextField
@@ -97,7 +105,8 @@ const Profile=()=>{
                 id="cith"
                 label="City"
                 name="city"
-                defaultValue={city || ""}
+                value={city || ""}
+                onChange={(event) => setCity(event.target.value)}
                 autoComplete="city"
                 />
             <Button
@@ -106,7 +115,6 @@ const Profile=()=>{
             variant="contained"
             >Save</Button>
             </Box>
-            <Button onClick={fetchData} variant="contained">CLCIK ME</Button>
         </Container>
 
     )
