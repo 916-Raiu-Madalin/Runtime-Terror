@@ -9,6 +9,7 @@ import Home from "./components/Home";
 import Profile from "./components/Profile"
 import {BrowserRouter,Route, Routes} from "react-router-dom";
 import Users from "./components/Users";
+import Disciplines from "./components/Disciplines";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
       <Route path="/login" element={<Login/>}/>
       <Route path="/profile" element={<Profile/>}/>
       <Route path="/users" element={<Users/>}/>
+      <Route path="/disciplines" element={<Disciplines/>}/>
     </Routes>
     </BrowserRouter>
 

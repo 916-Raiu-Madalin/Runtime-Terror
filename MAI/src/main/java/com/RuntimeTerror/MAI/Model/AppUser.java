@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Data
@@ -17,6 +18,10 @@ public class AppUser {
     private String username;
     private String password;
     private String emailAddress;
+
+
+    @OneToMany(mappedBy = "student")
+    Set<CourseRegistration> registrations;
 
     @ManyToOne
     private Role role;

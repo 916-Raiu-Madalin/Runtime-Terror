@@ -133,6 +133,11 @@ const Bar = () =>{
                     <MenuItem key="profile" component={RouterLink} to="/profile" >
                         <Typography textAlign="center">Profile</Typography>
                     </MenuItem>
+
+                    <MenuItem key="disciplines" component={RouterLink} to="/disciplines" >
+                        <Typography textAlign="center">Disciplines</Typography>
+                    </MenuItem>
+
                     <MenuItem key="logout" onClick={logout}>
                         <Typography textAlign="center">Logout</Typography>
                     </MenuItem>

@@ -1,8 +1,10 @@
 package com.RuntimeTerror.MAI.Controller;
 
 import com.RuntimeTerror.MAI.Model.AppUser;
+import com.RuntimeTerror.MAI.Model.Disciplines;
 import com.RuntimeTerror.MAI.Model.Profile;
 import com.RuntimeTerror.MAI.Model.Role;
+import com.RuntimeTerror.MAI.Repository.DisciplineRepository;
 import com.RuntimeTerror.MAI.Repository.ProfileRepository;
 import com.RuntimeTerror.MAI.Repository.RoleRepository;
 import com.RuntimeTerror.MAI.Repository.UserRepository;
@@ -26,6 +28,7 @@ public class UserController implements IUserController, UserDetailsService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final ProfileRepository profileRepository;
+    private final DisciplineRepository disciplineRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
@@ -51,6 +54,12 @@ public class UserController implements IUserController, UserDetailsService {
     }
 
     @Override
+    public Disciplines saveDiscipline(Disciplines disciplines){ return disciplineRepository.save(disciplines);}
+
+
+
+
+    @Override
     public Profile getProfile(String username) {
         System.out.println(username);
         AppUser appUser = userRepository.findByUsername(username);
@@ -71,10 +80,16 @@ public class UserController implements IUserController, UserDetailsService {
     }
 
     @Override
+    public List<Disciplines> getDiscipline() {
+        return disciplineRepository.findAll();
+    }
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         AppUser appUser = userRepository.findByUsername(username);
         if (appUser == null)
             throw new UsernameNotFoundException("User not found in the database");
         return new org.springframework.security.core.userdetails.User(appUser.getUsername(), appUser.getPassword(), Collections.singleton(new SimpleGrantedAuthority(appUser.getRole().getName())));
     }
+
+
 }

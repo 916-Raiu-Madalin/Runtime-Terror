@@ -2,6 +2,7 @@ package com.RuntimeTerror.MAI.Api;
 
 import com.RuntimeTerror.MAI.Controller.IUserController;
 import com.RuntimeTerror.MAI.Model.AppUser;
+import com.RuntimeTerror.MAI.Model.Disciplines;
 import com.RuntimeTerror.MAI.Model.Profile;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class UserResource {
     private final IUserController userController;
+    private final IUserController disciplinesController;
 
     @GetMapping("/users")
     public ResponseEntity<List<AppUser>> getUsers() {
@@ -31,5 +33,11 @@ public class UserResource {
         Profile profile1 = new Profile(user.getId(), user, profile.get("firstname"), profile.get("lastname"), profile.get("email"), profile.get("city"));
         userController.saveProfile(profile1);
         return ResponseEntity.ok().body(profile);
+
+
+    }
+    @GetMapping("/disciplines")
+    public ResponseEntity<List<Disciplines>> getDisciplines() {
+        return ResponseEntity.ok().body(disciplinesController.getDiscipline());
     }
 }
