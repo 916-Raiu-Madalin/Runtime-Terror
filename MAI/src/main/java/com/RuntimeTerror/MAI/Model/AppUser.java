@@ -16,6 +16,7 @@ public class AppUser {
     private String name;
     private String username;
     private String password;
+    private String emailAddress;
 
     @ManyToOne
     private Role role;
