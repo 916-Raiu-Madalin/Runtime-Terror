@@ -33,7 +33,10 @@ public class UserController implements IUserController, UserDetailsService {
 
         String encodedPassword = bCryptPasswordEncoder.encode(appUser.getPassword());
         appUser.setPassword(encodedPassword);
-        saveProfile(new Profile());
+        Profile profile = new Profile();
+        profile.setAppUser(appUser);
+        profile.setId(appUser.getId());
+        saveProfile(profile);
         return userRepository.save(appUser);
     }
 
