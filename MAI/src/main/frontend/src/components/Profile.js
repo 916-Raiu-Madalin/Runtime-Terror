@@ -21,7 +21,6 @@ const Profile=()=>{
         const loggedIn = auth?.logged_in ? true : false
         let username = localStorage.getItem('user');
         let password = localStorage.getItem('password');
-        console.log(username, password)
         axios({
             method:'GET',
             url:'/api/profile',
