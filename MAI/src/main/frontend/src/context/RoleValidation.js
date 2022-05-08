@@ -3,7 +3,7 @@ import {Navigate} from "react-router-dom";
 import Home from "../components/Home";
 
 const permissions = {
-    "student" : [],
+    "student" : ["/contract"],
     "teacher" : ["/optionals"]
     
 }
