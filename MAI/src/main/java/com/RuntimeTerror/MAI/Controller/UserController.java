@@ -101,7 +101,7 @@ public class UserController implements IUserController, UserDetailsService {
     }
 
     @Override
-    public List<Disciplines> getCompulsoryDiscipline() {
+    public List<Disciplines> getCompulsoryDisciplines() {
         return this.disciplineRepository.findAll().stream().filter(discipline -> discipline.getType().equals("compulsory")).collect(Collectors.toList());
     }
 

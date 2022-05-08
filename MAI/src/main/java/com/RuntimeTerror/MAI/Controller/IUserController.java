@@ -23,7 +23,7 @@ public interface IUserController {
 
     List<Disciplines> getDiscipline();
 
-    List<Disciplines> getCompulsoryDiscipline();
+    List<Disciplines> getCompulsoryDisciplines();
 
     List<Disciplines> getOptionalDisciplines();
 
