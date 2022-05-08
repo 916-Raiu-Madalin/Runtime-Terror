@@ -1,6 +1,6 @@
 import axios from "../api/axios";
 import TableContainer from "@mui/material/TableContainer";
-import {Paper, Table, TableBody, TableCell, TableRow} from "@mui/material";
+import {Paper, Stack, Table, TableBody, TableCell, TableRow} from "@mui/material";
 import TableHead from "@mui/material/TableHead";
 import {useEffect, useState} from "react";
 
@@ -46,24 +46,25 @@ const Curriculum = () => {
     useEffect(fetchData, []);
 
     return (
-        [<TableContainer component={Paper}>
-            <Table aria-label="Compulsory a Disciplines">
-                <TableHead>
-                    <TableRow>
-                        <TableCell sx={{fontWeight: 'bold'}}>Compulsory Discipline Name</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {compulsoryDisciplines.map((discipline) => (
-                        <TableRow key={discipline.name}>
-                            <TableCell>{discipline.name}</TableCell>
+        <Stack direction="row" spacing={2}>
+            <TableContainer component={Paper}>
+                <Table aria-label="Compulsory a Disciplines">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell sx={{fontWeight: 'bold'}}>Compulsory Discipline Name</TableCell>
                         </TableRow>
-                    ))
+                    </TableHead>
+                    <TableBody>
+                        {compulsoryDisciplines.map((discipline) => (
+                            <TableRow key={discipline.name}>
+                                <TableCell>{discipline.name}</TableCell>
+                            </TableRow>
+                        ))
 
-                    }
-                </TableBody>
-            </Table>
-        </TableContainer>,<br/>,
+                        }
+                    </TableBody>
+                </Table>
+            </TableContainer>
             <TableContainer component={Paper}>
                 <Table aria-label="Optional Disciplines">
                     <TableHead>
@@ -81,7 +82,8 @@ const Curriculum = () => {
                         }
                     </TableBody>
                 </Table>
-            </TableContainer>]
+            </TableContainer>
+        </Stack>
     );
 }
 
