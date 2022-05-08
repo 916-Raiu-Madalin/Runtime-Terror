@@ -24,13 +24,15 @@ public class UserResource {
     public ResponseEntity<List<AppUser>> getUsers() {
         return ResponseEntity.ok().body(userController.getUsers());
     }
+
     @GetMapping("/profile")
-    public ResponseEntity<Profile> getProfile(@RequestParam String username){
+    public ResponseEntity<Profile> getProfile(@RequestParam String username) {
         Profile profile = userController.getProfile(username);
         return ResponseEntity.ok().body(profile);
     }
+
     @PostMapping("/profile")
-    public ResponseEntity<?> setProfile(@RequestParam Map<String, String> profile){
+    public ResponseEntity<?> setProfile(@RequestParam Map<String, String> profile) {
         AppUser user = userController.getUser(profile.get("username"));
         Profile profile1 = new Profile(user.getId(), user, profile.get("firstname"), profile.get("lastname"), profile.get("email"), profile.get("city"));
         userController.saveProfile(profile1);
@@ -38,6 +40,7 @@ public class UserResource {
 
 
     }
+
     @GetMapping("/disciplines")
     public ResponseEntity<List<Disciplines>> getDisciplines() {
         return ResponseEntity.ok().body(disciplinesController.getDiscipline());
@@ -47,8 +50,19 @@ public class UserResource {
     public ResponseEntity<List<CourseRegistration>> getRegistrations() {
         return ResponseEntity.ok().body(registrationsController.getRegistrations());
     }
+
+    @GetMapping("/disciplines/compulsory")
+    public ResponseEntity<List<Disciplines>> getCompulsoryDisciplines() {
+        return ResponseEntity.ok().body(this.disciplinesController.getCompulsoryDisciplines());
+    }
+
+    @GetMapping("/disciplines/optional")
+    public ResponseEntity<List<Disciplines>> getOptionalDisciplines() {
+        return ResponseEntity.ok().body(this.disciplinesController.getOptionalDisciplines());
+    }
+
     @GetMapping("/courses")
-    public ResponseEntity<List<CourseRegistration>>getCourses(@RequestParam String username){
+    public ResponseEntity<List<CourseRegistration>> getCourses(@RequestParam String username) {
         return ResponseEntity.ok().body(registrationsController.getRegistrationsForAppUser(username));
     }
 }
