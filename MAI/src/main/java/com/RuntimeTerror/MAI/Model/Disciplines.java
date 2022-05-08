@@ -22,8 +22,11 @@ public class Disciplines {
     Long id;
     private String name;
 
-    public Disciplines(String name){
+    private String type;
+
+    public Disciplines(String name, String type) {
         this.name = name;
+        this.type = type;
     }
 
     @JsonIgnore
