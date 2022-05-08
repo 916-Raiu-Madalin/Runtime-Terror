@@ -1,5 +1,6 @@
 package com.RuntimeTerror.MAI;
 
+import com.RuntimeTerror.MAI.Controller.ITeacherController;
 import com.RuntimeTerror.MAI.Controller.IUserController;
 
 import com.RuntimeTerror.MAI.Model.*;
@@ -23,15 +24,16 @@ public class ManagingAcademicInformationApplication {
     }
 
     @Bean
-    CommandLineRunner commandLineRunner(IUserController userController){
+    CommandLineRunner commandLineRunner(IUserController userController, ITeacherController teacherController){
         return args -> {
-
 
         };
     }
 
     public static void main(String[] args) {
         SpringApplication.run(ManagingAcademicInformationApplication.class, args);
+
     }
+
 
 }

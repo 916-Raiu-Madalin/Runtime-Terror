@@ -11,6 +11,8 @@ import {BrowserRouter,Route, Routes} from "react-router-dom";
 import Users from "./components/Users";
 import Disciplines from "./components/Disciplines";
 import Curriculum from "./components/Curriculum";
+import Optionals from "./components/Optionals";
+import ValidRole from "./context/RoleValidation";
 
 
 function App() {
@@ -35,6 +37,7 @@ function App() {
       <Route path="/users" element={<Users/>}/>
       <Route path="/disciplines" element={<Disciplines/>}/>
       <Route path="/curriculum" element={<Curriculum/>}/>
+      <Route path="/optionals" element={ValidRole(Optionals, "/optionals")}/>
     </Routes>
     </BrowserRouter>
 
@@ -42,4 +45,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
