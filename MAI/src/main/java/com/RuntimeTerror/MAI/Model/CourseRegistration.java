@@ -12,10 +12,14 @@ import java.util.Objects;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@IdClass(CourseRegistrationKey.class)
 public class CourseRegistration {
 
-    @EmbeddedId
-    CourseRegistrationKey id;
+    @Id
+    Long appUserId;
+
+    @Id
+    Long courseId;
 
     @ManyToOne
     @MapsId("appUserId")
@@ -27,8 +31,9 @@ public class CourseRegistration {
     @JoinColumn(name = "course_id")
     Disciplines course;
 
-    public CourseRegistration(CourseRegistrationKey key, int grade){
-        this.id = key;
+    public CourseRegistration(Long appUserId, Long courseId, int grade){
+        this.appUserId = appUserId;
+        this.courseId = courseId;
         this.grade = grade;
     }
 //    LocalDateTime registeredAt;
@@ -40,11 +45,12 @@ public class CourseRegistration {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         CourseRegistration that = (CourseRegistration) o;
-        return id != null && Objects.equals(id, that.id);
+        return appUserId != null && Objects.equals(appUserId, that.appUserId)
+                && courseId != null && Objects.equals(courseId, that.courseId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(appUserId, courseId);
     }
 }
