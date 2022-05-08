@@ -13,7 +13,11 @@ const Bar = () =>{
     const loggedIn = auth?.logged_in ? true : false
     const navigate = useNavigate();
     
-    const pages = loggedIn? ["Home", auth?.role?.substring(5)] : ["Home"]
+    let pages = ["Home"]
+    let role = localStorage.getItem('role')
+    if(role)
+      if(role == "ROLE_TEACHER")
+        pages.push("optionals")
     const settings = ['Profile', 'Logout']
     const handleOpenNavMenu = (event) =>{
         setAnchorElNav(event.currentTarget)
@@ -30,7 +34,9 @@ const Bar = () =>{
     };
     const logout =()=>{
         localStorage.removeItem('user')
+        localStorage.removeItem('password')
         localStorage.removeItem('role')
+        localStorage.setItem('loggedIn', false)
         setAuth({});
         navigate("/")
 

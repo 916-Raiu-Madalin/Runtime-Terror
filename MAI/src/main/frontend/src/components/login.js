@@ -33,6 +33,7 @@ const Login=()=>{
             setErrMsg('');
             const role = response?.data;
             setAuth({username, role, "logged_in":true})
+            localStorage.setItem('loggedIn', true)
             localStorage.setItem('user', username)
             localStorage.setItem('password', password)
             localStorage.setItem('role', role)

@@ -10,6 +10,8 @@ import Profile from "./components/Profile"
 import {BrowserRouter,Route, Routes} from "react-router-dom";
 import Users from "./components/Users";
 import Disciplines from "./components/Disciplines";
+import Optionals from "./components/Optionals";
+import ValidRole from "./context/RoleValidation";
 
 
 function App() {
@@ -33,6 +35,7 @@ function App() {
       <Route path="/profile" element={<Profile/>}/>
       <Route path="/users" element={<Users/>}/>
       <Route path="/disciplines" element={<Disciplines/>}/>
+      <Route path="/optionals" element={ValidRole(Optionals, "/optionals")}/>
     </Routes>
     </BrowserRouter>
 
@@ -40,4 +43,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
