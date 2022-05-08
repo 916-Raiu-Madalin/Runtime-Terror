@@ -1,5 +1,6 @@
 package com.RuntimeTerror.MAI.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,7 @@ public class AppUser {
     private String emailAddress;
 
 
+    @JsonIgnore
     @OneToMany(mappedBy = "student")
     Set<CourseRegistration> registrations;
 

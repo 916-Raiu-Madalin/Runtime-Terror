@@ -1,6 +1,7 @@
 package com.RuntimeTerror.MAI.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -20,6 +21,7 @@ public class Disciplines {
     long id;
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "course")
     Set<CourseRegistration> registrations;
 }
