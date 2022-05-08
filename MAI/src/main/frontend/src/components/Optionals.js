@@ -1,10 +1,12 @@
 import AuthContext from "../context/AuthProvider"
 import {React, useContext, useEffect, useState} from "react"
-import { Box, Container, Button, TextField, Typography } from "@mui/material"
+import { Box, Container, Button, TextField, Typography,Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
 import axios from "../api/axios"
 
 
 const Optionals = () =>{
+    const [rows, setRows] = useState([]);
+
     const {auth, setAuth} = useContext(AuthContext);
     const [errMsg, setErrMsg] = useState('')
     const useMountEffect = (fun) => useEffect(fun, [])
@@ -30,9 +32,39 @@ const Optionals = () =>{
             console.log(err))
     }
 
+    const fetchData = (event) => {
+        event?.preventDefault();
+        let username = localStorage.getItem('user');
+        let password = localStorage.getItem('password');
+        axios({
+            method:'GET',
+            url:'/api/get_optionals',
+            auth:{
+                username:username,
+                password:password
+            },
+            params:{
+                teacher:username
+            }
+        }).then(response =>{
+            // rows=response.data;
+            setRows(response.data);
+
+        }).catch(err=>{
+            console.log(err)
+        })
+    }
+    useMountEffect(fetchData);
 
 
     return( <Container component="main" maxWidth="xl">
+        <Typography component="h1" variant="h5">
+            Current Optionals:
+        </Typography>
+        <Typography>
+            {rows.map((row) => row.name + " " )}
+        </Typography>
+
         <Box
         sx={{
             marginTop: 4,
