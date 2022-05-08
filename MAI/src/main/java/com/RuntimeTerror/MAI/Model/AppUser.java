@@ -22,7 +22,7 @@ public class AppUser {
 
 
     @JsonIgnore
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "appUser")
     Set<CourseRegistration> registrations;
 
     @ManyToOne

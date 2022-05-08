@@ -17,7 +17,7 @@ public class CourseRegistration {
     Long id;
 
     @ManyToOne
-    @JoinColumn(name = "appUser_id")
+    @JoinColumn(name = "app_user_id")
     AppUser appUser;
 
     @ManyToOne
