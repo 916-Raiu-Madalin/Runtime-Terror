@@ -18,7 +18,7 @@ import java.util.Set;
 public class Disciplines {
 
     @Id
-    long id;
+    Long id;
     private String name;
 
     @JsonIgnore
