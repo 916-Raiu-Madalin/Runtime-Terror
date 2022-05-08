@@ -10,6 +10,7 @@ import Profile from "./components/Profile"
 import {BrowserRouter,Route, Routes} from "react-router-dom";
 import Users from "./components/Users";
 import Disciplines from "./components/Disciplines";
+import Curriculum from "./components/Curriculum";
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
       <Route path="/profile" element={<Profile/>}/>
       <Route path="/users" element={<Users/>}/>
       <Route path="/disciplines" element={<Disciplines/>}/>
+      <Route path="/curriculum" element={<Curriculum/>}/>
     </Routes>
     </BrowserRouter>
 
