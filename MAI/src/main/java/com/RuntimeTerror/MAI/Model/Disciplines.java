@@ -22,18 +22,18 @@ public class Disciplines {
     Long id;
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name="teacher_id")
-    private Teacher teacher;
+    private Integer noCredits;
 
-    private String type;
-
-    public Disciplines(String name, String type, Teacher teacher){
+    public Disciplines(String name, String type,Teacher teacher, Integer noCredits) {
         this.name = name;
         this.type = type;
         this.teacher = teacher;
+        this.noCredits = noCredits;
     }
-
+    @ManyToOne
+    @JoinColumn(name="teacher_id")
+    private Teacher teacher;
+  
     @JsonIgnore
     @OneToMany(mappedBy = "course")
     @ToString.Exclude
