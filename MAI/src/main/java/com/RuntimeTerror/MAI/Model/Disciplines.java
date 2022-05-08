@@ -22,8 +22,16 @@ public class Disciplines {
     Long id;
     private String name;
 
-    public Disciplines(String name){
+    @ManyToOne
+    @JoinColumn(name="teacher_id")
+    private Teacher teacher;
+
+    private String type;
+
+    public Disciplines(String name, String type, Teacher teacher){
         this.name = name;
+        this.type = type;
+        this.teacher = teacher;
     }
 
     @JsonIgnore
