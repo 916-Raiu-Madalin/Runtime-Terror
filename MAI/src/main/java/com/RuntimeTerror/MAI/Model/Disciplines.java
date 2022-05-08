@@ -24,9 +24,12 @@ public class Disciplines {
 
     private String type;
 
-    public Disciplines(String name, String type) {
+    private Integer noCredits;
+
+    public Disciplines(String name, String type, Integer noCredits) {
         this.name = name;
         this.type = type;
+        this.noCredits = noCredits;
     }
 
     @JsonIgnore
