@@ -58,12 +58,29 @@ const Optionals = () =>{
 
 
     return( <Container component="main" maxWidth="xl">
-        <Typography component="h1" variant="h5">
-            Current Optionals:
-        </Typography>
-        <Typography>
-            {rows.map((row) => row.name + " " )}
-        </Typography>
+        <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 400 ,maxWidth:860, marginTop:5,marginLeft:"auto",marginRight:"auto"}} aria-label="Disciplines">
+                <TableHead>
+                    <TableRow>
+                        <TableCell><b>Discipline Name</b></TableCell>
+                        <TableCell align="right"><b>Number of credits</b></TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {rows.map((row) => (
+                        <TableRow
+                            key={row.name}
+                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                        >
+                            <TableCell component="th" scope="row">
+                                {row.name}
+                            </TableCell>
+                            <TableCell align="right">{row.noCredits}</TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
+        </TableContainer>
 
         <Box
         sx={{
@@ -87,6 +104,17 @@ const Optionals = () =>{
         autoComplete="discipline"
         autoFocus
         />
+        <TextField
+        margin="normal"
+        required
+        fullWidth
+        id="credits"
+        label="Number of credits"
+        name="credits"
+        autoComplete="credits"
+        autoFocus
+        />
+
     <Button
     type="submit"
     fullWidth
