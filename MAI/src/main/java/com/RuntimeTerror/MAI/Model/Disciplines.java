@@ -21,19 +21,20 @@ public class Disciplines {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     private String name;
-
-    @ManyToOne
-    @JoinColumn(name="teacher_id")
-    private Teacher teacher;
-
     private String type;
 
-    public Disciplines(String name, String type, Teacher teacher){
+    private Integer noCredits;
+
+    public Disciplines(String name, String type,Teacher teacher, Integer noCredits) {
         this.name = name;
         this.type = type;
         this.teacher = teacher;
+        this.noCredits = noCredits;
     }
-
+    @ManyToOne
+    @JoinColumn(name="teacher_id")
+    private Teacher teacher;
+  
     @JsonIgnore
     @OneToMany(mappedBy = "course")
     @ToString.Exclude
