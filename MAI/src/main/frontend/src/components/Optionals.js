@@ -62,7 +62,7 @@ const Optionals = () =>{
             Current Optionals:
         </Typography>
         <Typography>
-            {rows.map((row) => row.name + " " )}
+            {rows.map((row) => row.name + " " + row.noCredits + " " )}
         </Typography>
 
         <Box
@@ -85,6 +85,16 @@ const Optionals = () =>{
         label="Discipline Name"
         name="discipline"
         autoComplete="discipline"
+        autoFocus
+        />
+        <TextField
+        margin="normal"
+        required
+        fullWidth
+        id="credits"
+        label="Number of credits"
+        name="credits"
+        autoComplete="credits"
         autoFocus
         />
     <Button

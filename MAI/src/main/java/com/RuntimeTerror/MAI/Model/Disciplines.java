@@ -21,6 +21,7 @@ public class Disciplines {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     private String name;
+    private String type;
 
     private Integer noCredits;
 

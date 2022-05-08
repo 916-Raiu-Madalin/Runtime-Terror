@@ -27,7 +27,8 @@ public class TeacherService {
         if(teacher.getDisciplines().stream().filter(disc -> disc.getType().equals("optional")).count() >=2){
             return ResponseEntity.ok().body("Too many optionals");
         }
-        Disciplines disciplines = new Disciplines(discipline.get("discipline"), "optional", teacher);
+        Integer noCredits = Integer.parseInt(discipline.get("credits"));
+        Disciplines disciplines = new Disciplines(discipline.get("discipline"), "optional", teacher, noCredits);
         userController.saveDiscipline(disciplines);
         teacher.addDiscipline(disciplines);
         return ResponseEntity.ok().body("Optional successfully added!");
