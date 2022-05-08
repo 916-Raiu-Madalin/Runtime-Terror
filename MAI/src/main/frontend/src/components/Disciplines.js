@@ -6,25 +6,52 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import axios from "../api/axios";
+import {useContext} from "react";
+import AuthContext from "../context/AuthProvider";
 
-function createData(
-    name: string,
-    grade:number,
-
-) {
-    return { name, grade };
-}
-
-const rows = [
-    createData('Frozen yoghurt', 159),
-    createData('Ice cream sandwich', 237),
-    createData('Eclair', 262),
-    createData('Cupcake', 305),
-    createData('Gingerbread', 356),
-];
+// function createData(
+//     name: string,
+//     grade:number,
+//
+// ) {
+//     return { name, grade };
+// }
+//
+// const rows = [
+//     createData('Frozen yoghurt', 159),
+//     createData('Ice cream sandwich', 237),
+//     createData('Eclair', 262),
+//     createData('Cupcake', 305),
+//     createData('Gingerbread', 356),
+// ];
 const Disciplines=()=>{
 
+    let rows=[];
+    const {auth, setAuth} = useContext(AuthContext);
 
+    const fetchData = (event) =>{
+
+        event?.preventDefault();
+        const loggedIn = auth?.logged_in ? true : false
+        let username = localStorage.getItem('user');
+        let password = localStorage.getItem('password');
+        axios({
+            method:'GET',
+            url:'/api/profile',
+            auth:{
+                username:username,
+                password:password
+            },
+            params:{
+                username:username
+            }
+        }).then(response =>{
+            rows=response.data.registers;
+        }).catch(err=>{
+            console.log(err)
+        })
+    }
     return(
 
         <TableContainer component={Paper}>

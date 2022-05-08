@@ -1,13 +1,7 @@
 package com.RuntimeTerror.MAI.Controller;
 
-import com.RuntimeTerror.MAI.Model.AppUser;
-import com.RuntimeTerror.MAI.Model.Disciplines;
-import com.RuntimeTerror.MAI.Model.Profile;
-import com.RuntimeTerror.MAI.Model.Role;
-import com.RuntimeTerror.MAI.Repository.DisciplineRepository;
-import com.RuntimeTerror.MAI.Repository.ProfileRepository;
-import com.RuntimeTerror.MAI.Repository.RoleRepository;
-import com.RuntimeTerror.MAI.Repository.UserRepository;
+import com.RuntimeTerror.MAI.Model.*;
+import com.RuntimeTerror.MAI.Repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,6 +23,7 @@ public class UserController implements IUserController, UserDetailsService {
     private final RoleRepository roleRepository;
     private final ProfileRepository profileRepository;
     private final DisciplineRepository disciplineRepository;
+    private final RegisterRepository registerRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
@@ -55,8 +50,20 @@ public class UserController implements IUserController, UserDetailsService {
 
     @Override
     public Disciplines saveDiscipline(Disciplines disciplines){ return disciplineRepository.save(disciplines);}
+    @Override
+    public CourseRegistration saveRegistration(CourseRegistration registration){
+        return registerRepository.save(registration);
+    }
 
+    @Override
+    public List<CourseRegistration> getRegistrations() {
+        return registerRepository.findAll();
+    }
 
+    @Override
+    public Disciplines getDiscipline(String name) {
+        return disciplineRepository.findByName(name);
+    }
 
 
     @Override
