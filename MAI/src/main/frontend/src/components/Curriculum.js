@@ -48,16 +48,22 @@ const Curriculum = () => {
     return (
         <Stack direction="row" spacing={2}>
             <TableContainer component={Paper}>
-                <Table aria-label="Compulsory a Disciplines">
+                <Table aria-label="Compulsory Disciplines" title="Compulsory Disciplines">
                     <TableHead>
                         <TableRow>
-                            <TableCell sx={{fontWeight: 'bold'}}>Compulsory Discipline Name</TableCell>
+                            <TableCell colSpan={2} sx={{fontWeight: 'bold'}} align="center">Compulsory
+                                Disciplines</TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell sx={{fontWeight: 'bold'}}>Discipline Name</TableCell>
+                            <TableCell sx={{fontWeight: 'bold'}}>Number of ECTS Credits</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {compulsoryDisciplines.map((discipline) => (
                             <TableRow key={discipline.name}>
                                 <TableCell>{discipline.name}</TableCell>
+                                <TableCell align="center">{discipline.noCredits}</TableCell>
                             </TableRow>
                         ))
 
@@ -69,16 +75,21 @@ const Curriculum = () => {
                 <Table aria-label="Optional Disciplines">
                     <TableHead>
                         <TableRow>
+                            <TableCell colSpan={2} sx={{fontWeight: 'bold'}} align="center">Optional
+                                Disciplines</TableCell>
+                        </TableRow>
+                        <TableRow>
                             <TableCell sx={{fontWeight: 'bold'}}>Optional Discipline Name</TableCell>
+                            <TableCell sx={{fontWeight: 'bold'}}>Number of ECTS Credits</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {optionalDisciplines.map((discipline) => (
                             <TableRow key={discipline.name}>
                                 <TableCell>{discipline.name}</TableCell>
+                                <TableCell align="center">{discipline.noCredits}</TableCell>
                             </TableRow>
                         ))
-
                         }
                     </TableBody>
                 </Table>
