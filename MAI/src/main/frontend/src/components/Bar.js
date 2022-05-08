@@ -18,6 +18,8 @@ const Bar = () =>{
     if(role)
       if(role == "ROLE_TEACHER")
         pages.push("optionals")
+      if(role == "ROLE_STUDENT")
+        pages.push("contract")
     const settings = ['Profile', 'Logout']
     const handleOpenNavMenu = (event) =>{
         setAnchorElNav(event.currentTarget)
