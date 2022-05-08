@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -44,14 +45,17 @@ public class UserController implements IUserController, UserDetailsService {
     }
 
     @Override
-    public Profile saveProfile(Profile profile){
+    public Profile saveProfile(Profile profile) {
         return profileRepository.save(profile);
     }
 
     @Override
-    public Disciplines saveDiscipline(Disciplines disciplines){ return disciplineRepository.save(disciplines);}
+    public Disciplines saveDiscipline(Disciplines disciplines) {
+        return disciplineRepository.save(disciplines);
+    }
+
     @Override
-    public CourseRegistration saveRegistration(CourseRegistration registration){
+    public CourseRegistration saveRegistration(CourseRegistration registration) {
         return registerRepository.save(registration);
     }
 
@@ -95,6 +99,17 @@ public class UserController implements IUserController, UserDetailsService {
     public List<Disciplines> getDiscipline() {
         return disciplineRepository.findAll();
     }
+
+    @Override
+    public List<Disciplines> getCompulsoryDiscipline() {
+        return this.disciplineRepository.findAll().stream().filter(discipline -> discipline.getType().equals("compulsory")).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Disciplines> getOptionalDisciplines() {
+        return this.disciplineRepository.findAll().stream().filter(discipline -> discipline.getType().equals("optional")).collect(Collectors.toList());
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         AppUser appUser = userRepository.findByUsername(username);
@@ -102,6 +117,4 @@ public class UserController implements IUserController, UserDetailsService {
             throw new UsernameNotFoundException("User not found in the database");
         return new org.springframework.security.core.userdetails.User(appUser.getUsername(), appUser.getPassword(), Collections.singleton(new SimpleGrantedAuthority(appUser.getRole().getName())));
     }
-
-
 }
