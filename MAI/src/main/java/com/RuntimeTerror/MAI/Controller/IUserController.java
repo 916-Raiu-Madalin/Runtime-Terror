@@ -1,9 +1,6 @@
 package com.RuntimeTerror.MAI.Controller;
 
-import com.RuntimeTerror.MAI.Model.AppUser;
-import com.RuntimeTerror.MAI.Model.Disciplines;
-import com.RuntimeTerror.MAI.Model.Profile;
-import com.RuntimeTerror.MAI.Model.Role;
+import com.RuntimeTerror.MAI.Model.*;
 
 import java.util.List;
 
@@ -16,6 +13,11 @@ public interface IUserController {
     Profile getProfile(String username);
 
     Disciplines saveDiscipline(Disciplines disciplines);
+
+    Disciplines getDiscipline(String name);
     List<Disciplines> getDiscipline();
+
+    CourseRegistration saveRegistration(CourseRegistration registration);
+    List<CourseRegistration> getRegistrations();
 
 }

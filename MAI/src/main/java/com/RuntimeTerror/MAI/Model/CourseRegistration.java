@@ -17,14 +17,14 @@ public class CourseRegistration {
     Long id;
 
     @ManyToOne
-    @JoinColumn(name = "student_id")
-    AppUser student;
+    @JoinColumn(name = "appUser_id")
+    AppUser appUser;
 
     @ManyToOne
     @JoinColumn(name = "course_id")
     Disciplines course;
 
-    LocalDateTime registeredAt;
+//    LocalDateTime registeredAt;
 
     int grade;
 

@@ -2,6 +2,7 @@ package com.RuntimeTerror.MAI.Api;
 
 import com.RuntimeTerror.MAI.Controller.IUserController;
 import com.RuntimeTerror.MAI.Model.AppUser;
+import com.RuntimeTerror.MAI.Model.CourseRegistration;
 import com.RuntimeTerror.MAI.Model.Disciplines;
 import com.RuntimeTerror.MAI.Model.Profile;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import java.util.Map;
 public class UserResource {
     private final IUserController userController;
     private final IUserController disciplinesController;
+    private final IUserController registrationsController;
 
     @GetMapping("/users")
     public ResponseEntity<List<AppUser>> getUsers() {
@@ -39,5 +41,10 @@ public class UserResource {
     @GetMapping("/disciplines")
     public ResponseEntity<List<Disciplines>> getDisciplines() {
         return ResponseEntity.ok().body(disciplinesController.getDiscipline());
+    }
+
+    @GetMapping("/registrations")
+    public ResponseEntity<List<CourseRegistration>> getRegistrations() {
+        return ResponseEntity.ok().body(registrationsController.getRegistrations());
     }
 }

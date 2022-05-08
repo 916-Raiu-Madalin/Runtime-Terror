@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -20,8 +21,8 @@ public class AppUser {
     private String emailAddress;
 
 
-    @OneToMany(mappedBy = "student")
-    Set<CourseRegistration> registrations;
+//    @OneToMany(mappedBy = "appUser")
+//    Set<CourseRegistration> registrations;
 
     @ManyToOne
     private Role role;
