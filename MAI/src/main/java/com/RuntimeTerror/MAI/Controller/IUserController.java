@@ -19,5 +19,5 @@ public interface IUserController {
 
     CourseRegistration saveRegistration(CourseRegistration registration);
     List<CourseRegistration> getRegistrations();
-
+    List<CourseRegistration> getRegistrationsForAppUser(String username);
 }

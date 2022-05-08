@@ -7,7 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import axios from "../api/axios";
-import {useContext} from "react";
+import {useContext, useEffect, useState} from "react";
 import AuthContext from "../context/AuthProvider";
 
 // function createData(
@@ -27,8 +27,10 @@ import AuthContext from "../context/AuthProvider";
 // ];
 const Disciplines=()=>{
 
-    let rows=[];
+    // let rows=[];
+    const [rows, setRows] = useState([]);
     const {auth, setAuth} = useContext(AuthContext);
+    const useMountEffect = (fun) => useEffect(fun, [])
 
     const fetchData = (event) =>{
 
@@ -38,7 +40,7 @@ const Disciplines=()=>{
         let password = localStorage.getItem('password');
         axios({
             method:'GET',
-            url:'/api/profile',
+            url:'/api/courses',
             auth:{
                 username:username,
                 password:password
@@ -47,11 +49,15 @@ const Disciplines=()=>{
                 username:username
             }
         }).then(response =>{
-            rows=response.data.registers;
+            // rows=response.data;
+            setRows(response.data);
+
         }).catch(err=>{
             console.log(err)
         })
     }
+    useMountEffect(fetchData);
+
     return(
 
         <TableContainer component={Paper}>
@@ -65,11 +71,11 @@ const Disciplines=()=>{
                 <TableBody>
                     {rows.map((row) => (
                         <TableRow
-                            key={row.name}
+                            key={row.course.name}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                             <TableCell component="th" scope="row">
-                                {row.name}
+                                {row.course.name}
                             </TableCell>
                             <TableCell align="right">{row.grade}</TableCell>
                         </TableRow>

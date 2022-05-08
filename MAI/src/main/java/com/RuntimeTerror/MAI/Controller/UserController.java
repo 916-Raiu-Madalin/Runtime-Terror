@@ -61,6 +61,11 @@ public class UserController implements IUserController, UserDetailsService {
     }
 
     @Override
+    public List<CourseRegistration> getRegistrationsForAppUser(String username) {
+        return registerRepository.findCourseRegistrationByAppUser_Username(username);
+    }
+
+    @Override
     public Disciplines getDiscipline(String name) {
         return disciplineRepository.findByName(name);
     }

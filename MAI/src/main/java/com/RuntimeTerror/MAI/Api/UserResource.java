@@ -47,4 +47,8 @@ public class UserResource {
     public ResponseEntity<List<CourseRegistration>> getRegistrations() {
         return ResponseEntity.ok().body(registrationsController.getRegistrations());
     }
+    @GetMapping("/courses")
+    public ResponseEntity<List<CourseRegistration>>getCourses(@RequestParam String username){
+        return ResponseEntity.ok().body(registrationsController.getRegistrationsForAppUser(username));
+    }
 }
