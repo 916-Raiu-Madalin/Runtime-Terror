@@ -142,9 +142,10 @@ const Bar = () =>{
                         <Typography textAlign="center">Profile</Typography>
                     </MenuItem>
 
+                    {role == "ROLE_STUDENT" &&
                     <MenuItem key="disciplines" component={RouterLink} to="/disciplines" >
                         <Typography textAlign="center">Disciplines</Typography>
-                    </MenuItem>
+                    </MenuItem>}
 
                     <MenuItem key="curriculum" component={RouterLink} to="/curriculum">
                         <Typography textAlign="center">Curriculum</Typography>
