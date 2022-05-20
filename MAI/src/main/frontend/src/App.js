@@ -14,6 +14,7 @@ import Curriculum from "./components/Curriculum";
 import Contract from "./components/Contract";
 import Optionals from "./components/Optionals";
 import ValidRole from "./context/RoleValidation";
+import ApproveOptionals from "./components/ApproveOptionals";
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
       <Route path="/curriculum" element={<Curriculum/>}/>
       <Route path="/optionals" element={ValidRole(Optionals, "/optionals")}/>
       <Route path="/contract" element={ValidRole(Contract, "/contract")}/>
+      <Route path="approve_optionals" element={ValidRole(ApproveOptionals,"/approve_optionals")}/>
     </Routes>
     </BrowserRouter>
 

@@ -16,10 +16,12 @@ const Bar = () =>{
     let pages = ["Home"]
     let role = localStorage.getItem('role')
     if(role)
-      if(role == "ROLE_TEACHER")
+      if(role == "ROLE_TEACHER" || role == "ROLE_TEACHER_CHIEF")
         pages.push("optionals")
       if(role == "ROLE_STUDENT")
         pages.push("contract")
+      if(role == "ROLE_TEACHER_CHIEF")
+        pages.push("approve_optionals")
     const settings = ['Profile', 'Logout']
     const handleOpenNavMenu = (event) =>{
         setAnchorElNav(event.currentTarget)

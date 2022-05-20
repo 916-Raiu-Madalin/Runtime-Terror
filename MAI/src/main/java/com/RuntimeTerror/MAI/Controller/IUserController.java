@@ -21,6 +21,13 @@ public interface IUserController {
 
     Disciplines getDiscipline(String name);
 
+    List<PendingDiscipline> getPendingDisciplines();
+    List<PendingDiscipline> getPendingDisciplines(String teacher);
+
+    Disciplines approveDiscipline(Long id);
+
+    PendingDiscipline savePendingDiscipline(PendingDiscipline pendingDiscipline);
+
     List<Disciplines> getDiscipline();
 
     List<Disciplines> getCompulsoryDisciplines();

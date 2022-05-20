@@ -1,5 +1,6 @@
 package com.RuntimeTerror.MAI;
 
+import com.RuntimeTerror.MAI.Controller.IStudentController;
 import com.RuntimeTerror.MAI.Controller.ITeacherController;
 import com.RuntimeTerror.MAI.Controller.IUserController;
 
@@ -24,9 +25,8 @@ public class ManagingAcademicInformationApplication {
     }
 
     @Bean
-    CommandLineRunner commandLineRunner(IUserController userController, ITeacherController teacherController){
+    CommandLineRunner commandLineRunner(IUserController userController, ITeacherController teacherController, IStudentController studentController) {
         return args -> {
-
         };
     }
 

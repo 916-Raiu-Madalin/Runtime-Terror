@@ -16,7 +16,8 @@ import java.util.Set;
 @NoArgsConstructor
 public class Teacher {
 
-    public Teacher(String username){
+    public Teacher(String username, String name){
+        this.name = name;
         this.username = username;
     }
 
@@ -30,12 +31,20 @@ public class Teacher {
 
     private String username;
 
+    private String name;
 
     @JsonIgnore
     @OneToMany(mappedBy = "teacher")
     @ToString.Exclude
     private Set<Disciplines> disciplines = new HashSet<>();
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Teacher teacher = (Teacher) o;
+        return id != null && Objects.equals(id, teacher.id);
+    }
 
     @Override
     public int hashCode() {

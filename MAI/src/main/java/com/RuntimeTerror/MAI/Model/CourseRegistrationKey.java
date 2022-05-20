@@ -14,8 +14,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class CourseRegistrationKey implements Serializable {
 
-    @Column(name="app_user_id")
-    private Long appUserId;
+    @Column(name="student_id")
+    private Long studentId;
 
     @Column(name="course_id")
     private Long courseId;

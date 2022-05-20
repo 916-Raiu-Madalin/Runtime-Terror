@@ -24,11 +24,6 @@ public class AppUser {
     private String emailAddress;
 
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "appUser")
-    @ToString.Exclude
-    Set<CourseRegistration> registrations = new HashSet<>();
-
     @ManyToOne
     private Role role;
 

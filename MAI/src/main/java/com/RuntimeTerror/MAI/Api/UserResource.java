@@ -1,10 +1,7 @@
 package com.RuntimeTerror.MAI.Api;
 
 import com.RuntimeTerror.MAI.Controller.IUserController;
-import com.RuntimeTerror.MAI.Model.AppUser;
-import com.RuntimeTerror.MAI.Model.CourseRegistration;
-import com.RuntimeTerror.MAI.Model.Disciplines;
-import com.RuntimeTerror.MAI.Model.Profile;
+import com.RuntimeTerror.MAI.Model.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -45,6 +42,15 @@ public class UserResource {
     public ResponseEntity<List<Disciplines>> getDisciplines() {
         return ResponseEntity.ok().body(disciplinesController.getDiscipline());
     }
+    @GetMapping("/pending_disciplines")
+    public ResponseEntity<List<PendingDiscipline>> getPendingDisciplines() {
+        return ResponseEntity.ok().body(disciplinesController.getPendingDisciplines());
+    }
+    @GetMapping("/pending_disciplines/{teacher}")
+    public ResponseEntity<List<PendingDiscipline>> getPendingDisciplines(@PathVariable String teacher) {
+        return ResponseEntity.ok().body(disciplinesController.getPendingDisciplines(teacher));
+    }
+
 
     @GetMapping("/registrations")
     public ResponseEntity<List<CourseRegistration>> getRegistrations() {

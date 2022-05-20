@@ -1,6 +1,5 @@
 package com.RuntimeTerror.MAI.Controller;
 
-import com.RuntimeTerror.MAI.Model.AuthenticationRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

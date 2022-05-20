@@ -26,6 +26,9 @@ public class UserController implements IUserController, UserDetailsService {
     private final DisciplineRepository disciplineRepository;
     private final RegisterRepository registerRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final TeacherRepository teacherRepository;
+    private final StudentRepository studentRepository;
+    private final PendingDisciplinesRepository pendingDisciplinesRepository;
 
     @Override
     public AppUser saveUser(AppUser appUser) {
@@ -36,7 +39,16 @@ public class UserController implements IUserController, UserDetailsService {
         profile.setAppUser(appUser);
         profile.setId(appUser.getId());
         saveProfile(profile);
-        return userRepository.save(appUser);
+        AppUser returnUser = userRepository.save(appUser);
+        if("ROLE_STUDENT".equals(appUser.getRole().getName())){
+            Student newStudent = new Student(appUser.getUsername(), appUser.getName());
+            studentRepository.save(newStudent);
+        }
+        if("ROLE_TEACHER".equals(appUser.getRole().getName()) || "ROLE_TEACHER_CHIEF".equals(appUser.getRole().getName())){
+            Teacher newTeacher = new Teacher(appUser.getUsername(), appUser.getName());
+            teacherRepository.save(newTeacher);
+        }
+        return returnUser;
     }
 
     @Override
@@ -66,12 +78,37 @@ public class UserController implements IUserController, UserDetailsService {
 
     @Override
     public List<CourseRegistration> getRegistrationsForAppUser(String username) {
-        return registerRepository.findCourseRegistrationByAppUser_Username(username);
+        return registerRepository.findCourseRegistrationByStudent_Username(username);
     }
 
     @Override
     public Disciplines getDiscipline(String name) {
         return disciplineRepository.findByName(name);
+    }
+
+    @Override
+    public List<PendingDiscipline> getPendingDisciplines() {
+        return pendingDisciplinesRepository.findAll();
+    }
+
+    @Override
+    public List<PendingDiscipline> getPendingDisciplines(String teacher) {
+        return pendingDisciplinesRepository.getPendingDisciplinesByTeacher_Username(teacher);
+    }
+
+    @Override
+    public Disciplines approveDiscipline(Long id) {
+        PendingDiscipline pendingDiscipline = pendingDisciplinesRepository.getById(id);
+        Disciplines disciplines = new Disciplines(pendingDiscipline.getName(), "optional", pendingDiscipline.getTeacher(), pendingDiscipline.getNoCredits());
+        disciplineRepository.save(disciplines);
+        disciplines.getTeacher().addDiscipline(disciplines);
+        pendingDisciplinesRepository.delete(pendingDiscipline);
+        return disciplines;
+    }
+
+    @Override
+    public PendingDiscipline savePendingDiscipline(PendingDiscipline pendingDiscipline) {
+        return pendingDisciplinesRepository.save(pendingDiscipline);
     }
 
 
