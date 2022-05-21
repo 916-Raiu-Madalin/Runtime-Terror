@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -22,6 +23,11 @@ public class StudentController implements IStudentController {
     @Override
     public Student findByUsername(String username) {
         return this.studentRepository.findByUsername(username);
+    }
+
+    @Override
+    public List<Student> findByGroup(Long group) {
+        return this.studentRepository.findByGroup(group);
     }
 
 }
