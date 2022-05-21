@@ -25,11 +25,14 @@ public class Disciplines {
 
     private Integer noCredits;
 
-    public Disciplines(String name, String type,Teacher teacher, Integer noCredits) {
+    private Integer semester;
+
+    public Disciplines(String name, String type,Teacher teacher, Integer noCredits,Integer semester) {
         this.name = name;
         this.type = type;
         this.teacher = teacher;
         this.noCredits = noCredits;
+        this.semester= semester;
     }
     @ManyToOne
     @JoinColumn(name="teacher_id")

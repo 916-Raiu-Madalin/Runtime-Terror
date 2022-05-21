@@ -30,7 +30,8 @@ public class TeacherService {
             return ResponseEntity.ok().body("Too many optionals");
         }
         Integer noCredits = Integer.parseInt(discipline.get("credits"));
-        PendingDiscipline pendingDiscipline = new PendingDiscipline(discipline.get("discipline"), teacher, noCredits);
+        Integer semester = Integer.parseInt(discipline.get("semester"));
+        PendingDiscipline pendingDiscipline = new PendingDiscipline(discipline.get("discipline"), teacher, noCredits,semester);
         userController.savePendingDiscipline(pendingDiscipline);
         return ResponseEntity.ok().body("Optional successfully added!");
     }

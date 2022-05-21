@@ -37,10 +37,13 @@ public class PendingDiscipline {
 
     private Integer noCredits;
 
-    public PendingDiscipline(String name, Teacher teacher, Integer noCredits) {
+    private Integer semester;
+
+    public PendingDiscipline(String name, Teacher teacher, Integer noCredits, Integer semester) {
         this.name = name;
         this.teacher = teacher;
         this.noCredits = noCredits;
+        this.semester = semester;
     }
 
     @ManyToOne
