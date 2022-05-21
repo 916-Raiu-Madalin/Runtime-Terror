@@ -39,12 +39,14 @@ const Home = ( ) =>{
             flexDirection: 'column',
             alignItems: 'center',
             gap: 10,
+
           }}
         >
         <Typography variant="h3">
             Welcome to MAI
         </Typography>
-        <Card sx={{ minWidth: 500 ,width: '30%',display: 'flex', flexDirection: 'column'}}>
+        <Card sx={{ minWidth: 500 ,width: '30%',display: 'flex', flexDirection: 'column'
+            ,backgroundColor:'rgba(3,169,244,0.48)'}}>
             <CardContent >
                 <Box sx={{display: 'flex', flexDirection: 'row'}} color="text.secondary" gutterBottom>
                     <Typography sx={{fontSize:24}} gutterBottom>
@@ -68,8 +70,8 @@ const Home = ( ) =>{
                         <TableBody>
                         <TableRow>
                             <TableCell ><Avatar alt="Remy Sharp" src={userLogo} />
-                                <Typography sx={{color:'lightblue'}}>
-                                    by Admin User
+                                <Typography sx={{color:'black'}}>
+                                    <b>by Admin User</b>
                                 </Typography>
                             </TableCell>
                             <TableCell>

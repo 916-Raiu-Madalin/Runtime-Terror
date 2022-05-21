@@ -79,8 +79,8 @@ const Disciplines=()=>{
 
     return(
 
-        <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 400 ,maxWidth:860, marginTop:5,marginLeft:"auto",marginRight:"auto"}} aria-label="Disciplines">
+        <TableContainer >
+            <Table sx={{ minWidth: "auto" ,maxWidth:860, marginTop:5,marginLeft:"auto",marginRight:"auto"}} aria-label="Disciplines">
                 <TableHead>
                     <TableRow>
                         <TableCell><b>Discipline Name</b></TableCell>
@@ -102,7 +102,7 @@ const Disciplines=()=>{
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                             <TableCell component="th" scope="row">
-                                {row.course.name}
+                                <b>{row.course.name}</b>
                             </TableCell>
                             <TableCell align="right">{row.grade}</TableCell>
                             <TableCell align ="right">{row.course.semester}</TableCell>
