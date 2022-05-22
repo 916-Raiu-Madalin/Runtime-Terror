@@ -14,7 +14,7 @@ const Curriculum = () => {
 
     const [compulsoryDisciplines, setCompulsoryDisciplines] = useState([]);
     const [optionalDisciplines, setOptionalDisciplines] = useState([]);
-
+    
 
     function fetchData() {
         axios({

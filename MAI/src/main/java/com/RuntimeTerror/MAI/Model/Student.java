@@ -26,6 +26,9 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name="group_id")
+    private Long group;
+
     private String username;
 
     private String name;

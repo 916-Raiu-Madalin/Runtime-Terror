@@ -4,8 +4,9 @@ import Home from "../components/Home";
 
 const permissions = {
     "student" : ["/contract"],
-    "teacher" : ["/optionals"],
-    "teacher_chief": ["/optionals", "/approve_optionals"]
+    "teacher" : ["/optionals", "/grade"],
+    "teacher_chief": ["/optionals", "/approve_optionals", "/grade"],
+    "staff" : ["/documents"]
     
 }
 const ValidRole = (Component, path) => {

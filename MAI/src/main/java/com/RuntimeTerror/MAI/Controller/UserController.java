@@ -97,9 +97,9 @@ public class UserController implements IUserController, UserDetailsService {
     }
 
     @Override
-    public Disciplines approveDiscipline(Long id) {
+    public Disciplines approveDiscipline(Long id, Integer noStudents) {
         PendingDiscipline pendingDiscipline = pendingDisciplinesRepository.getById(id);
-        Disciplines disciplines = new Disciplines(pendingDiscipline.getName(), "optional", pendingDiscipline.getTeacher(), pendingDiscipline.getNoCredits());
+        Disciplines disciplines = new Disciplines(pendingDiscipline.getName(), "optional", pendingDiscipline.getTeacher(), pendingDiscipline.getNoCredits(),pendingDiscipline.getSemester(), noStudents, pendingDiscipline.getYear());
         disciplineRepository.save(disciplines);
         disciplines.getTeacher().addDiscipline(disciplines);
         pendingDisciplinesRepository.delete(pendingDiscipline);

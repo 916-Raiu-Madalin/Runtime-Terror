@@ -25,7 +25,7 @@ public interface IUserController {
 
     List<PendingDiscipline> getPendingDisciplines(String teacher);
 
-    Disciplines approveDiscipline(Long id);
+    Disciplines approveDiscipline(Long id, Integer noStudents);
 
     PendingDiscipline savePendingDiscipline(PendingDiscipline pendingDiscipline);
 

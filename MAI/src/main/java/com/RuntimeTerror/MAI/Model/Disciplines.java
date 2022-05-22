@@ -25,15 +25,20 @@ public class Disciplines {
 
     private Integer noCredits;
 
-    private Integer year;
-
     private Integer semester;
 
-    public Disciplines(String name, String type, Teacher teacher, Integer noCredits) {
+    private Integer noStudents;
+
+    private Integer year;
+
+    public Disciplines(String name, String type,Teacher teacher, Integer noCredits,Integer semester, Integer noStudents, Integer year) {
         this.name = name;
         this.type = type;
         this.teacher = teacher;
         this.noCredits = noCredits;
+        this.semester= semester;
+        this.noStudents = noStudents;
+        this.year = year;
     }
 
     public Disciplines(Long id, String name, String type, Integer noCredits, Integer year, Integer semester, Teacher teacher) {
