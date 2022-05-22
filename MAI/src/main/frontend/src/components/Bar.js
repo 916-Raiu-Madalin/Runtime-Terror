@@ -17,7 +17,8 @@ const Bar = () =>{
     let role = localStorage.getItem('role')
     if(role)
       if(role == "ROLE_TEACHER" || role == "ROLE_TEACHER_CHIEF")
-        pages.push("optionals")
+        {pages.push("optionals")
+        pages.push("grade")}
       if(role == "ROLE_STUDENT")
         pages.push("contract")
       if(role == "ROLE_TEACHER_CHIEF")

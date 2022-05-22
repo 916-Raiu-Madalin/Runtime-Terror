@@ -90,7 +90,9 @@ const Optionals = () => {
 
   return (
     <Container component="main" maxWidth="xl">
-      <Stack direction="row" spacing={2}>
+      <Stack sx={{
+        marginTop:4
+      }} direction="row" spacing={2}>
         <TableContainer component={Paper}>
           <Table
             aria-label="Disciplines"
@@ -108,7 +110,7 @@ const Optionals = () => {
                 <TableCell sx={{ fontWeight: "bold" }}>
                   Discipline Name
                 </TableCell>
-                <TableCell sx={{ fontWeight: "bold" }}>
+                <TableCell align="right" sx={{ fontWeight: "bold" }}>
                   Number of ECTS Credits
                 </TableCell>
               </TableRow>
@@ -143,7 +145,7 @@ const Optionals = () => {
                 <TableCell sx={{ fontWeight: "bold" }}>
                   Discipline Name
                 </TableCell>
-                <TableCell sx={{ fontWeight: "bold" }}>
+                <TableCell align="right" sx={{ fontWeight: "bold" }}>
                   Number of ECTS Credits
                 </TableCell>
               </TableRow>
@@ -159,7 +161,7 @@ const Optionals = () => {
           </Table>
         </TableContainer>
       </Stack>
-      <Box
+      <Box  
         sx={{
           marginTop: 4,
           display: "flex",
@@ -171,7 +173,12 @@ const Optionals = () => {
           {errMsg}
         </Typography>
       </Box>
-      <Box onSubmit={handleSubmit} component="form" noValidate>
+      <Paper>
+      <Box onSubmit={handleSubmit} component="form"
+        sx={{
+          padding: 4,
+        }}
+      noValidate>
         <TextField
           margin="normal"
           required
@@ -192,11 +199,21 @@ const Optionals = () => {
           autoComplete="credits"
           autoFocus
         />
-
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          id="semester"
+          label="Semester"
+          name="semester"
+          autoComplete="semester"
+          autoFocus
+        />
         <Button type="submit" fullWidth variant="contained">
           Save
         </Button>
       </Box>
+      </Paper>
     </Container>
   );
 };
