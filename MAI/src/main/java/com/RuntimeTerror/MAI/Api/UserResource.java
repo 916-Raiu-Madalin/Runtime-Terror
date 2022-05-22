@@ -42,10 +42,12 @@ public class UserResource {
     public ResponseEntity<List<Disciplines>> getDisciplines() {
         return ResponseEntity.ok().body(disciplinesController.getDiscipline());
     }
+
     @GetMapping("/pending_disciplines")
     public ResponseEntity<List<PendingDiscipline>> getPendingDisciplines() {
         return ResponseEntity.ok().body(disciplinesController.getPendingDisciplines());
     }
+
     @GetMapping("/pending_disciplines/{teacher}")
     public ResponseEntity<List<PendingDiscipline>> getPendingDisciplines(@PathVariable String teacher) {
         return ResponseEntity.ok().body(disciplinesController.getPendingDisciplines(teacher));
@@ -58,17 +60,27 @@ public class UserResource {
     }
 
     @GetMapping("/disciplines/compulsory")
-    public ResponseEntity<List<Disciplines>> getCompulsoryDisciplines() {
-        return ResponseEntity.ok().body(this.disciplinesController.getCompulsoryDisciplines());
+    @ResponseBody
+    public ResponseEntity<List<Disciplines>> getCompulsoryDisciplines(@RequestParam Integer year, @RequestParam Integer semester) {
+        System.out.println(year + "<->" + semester);
+        return ResponseEntity.ok().body(this.disciplinesController.getCompulsoryDisciplines(year, semester));
     }
 
     @GetMapping("/disciplines/optional")
-    public ResponseEntity<List<Disciplines>> getOptionalDisciplines() {
-        return ResponseEntity.ok().body(this.disciplinesController.getOptionalDisciplines());
+    @ResponseBody
+    public ResponseEntity<List<Disciplines>> getOptionalDisciplines(@RequestParam Integer year, @RequestParam Integer semester) {
+        return ResponseEntity.ok().body(this.disciplinesController.getOptionalDisciplines(year, semester));
     }
 
     @GetMapping("/courses")
     public ResponseEntity<List<CourseRegistration>> getCourses(@RequestParam String username) {
         return ResponseEntity.ok().body(registrationsController.getRegistrationsForAppUser(username));
+    }
+
+
+    @PostMapping("/enrol")
+    public ResponseEntity<String> enrollToYear(@RequestParam Integer year) {
+        this.userController.enrollToYear(year);
+        return ResponseEntity.ok().body("");
     }
 }

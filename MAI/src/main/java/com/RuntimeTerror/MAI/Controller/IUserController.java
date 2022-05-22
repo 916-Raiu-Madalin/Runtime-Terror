@@ -22,6 +22,7 @@ public interface IUserController {
     Disciplines getDiscipline(String name);
 
     List<PendingDiscipline> getPendingDisciplines();
+
     List<PendingDiscipline> getPendingDisciplines(String teacher);
 
     Disciplines approveDiscipline(Long id, Integer noStudents);
@@ -32,11 +33,17 @@ public interface IUserController {
 
     List<Disciplines> getCompulsoryDisciplines();
 
+    List<Disciplines> getCompulsoryDisciplines(Integer year, Integer semester);
+
     List<Disciplines> getOptionalDisciplines();
+
+    List<Disciplines> getOptionalDisciplines(Integer year, Integer semester);
 
     CourseRegistration saveRegistration(CourseRegistration registration);
 
     List<CourseRegistration> getRegistrations();
 
     List<CourseRegistration> getRegistrationsForAppUser(String username);
+
+    void enrollToYear(Integer year);
 }
