@@ -13,13 +13,10 @@ const Contract = () => {
         axios(
             {
                 method: 'GET',
-                url: '/api/courses',
+                url: '/api/disciplines/compulsory/all',
                 auth: {
                     username: localStorage.getItem('user'),
                     password: localStorage.getItem('password')
-                },
-                params: {
-                    username:localStorage.getItem('user'),
                 }
             }
         ).then(response => {
@@ -31,12 +28,11 @@ const Contract = () => {
         axios(
             {
                 method: 'GET',
-                url: '/api/disciplines/optional',
+                url: '/api/disciplines/optional/all',
                 auth: {
                     username: localStorage.getItem('user'),
                     password: localStorage.getItem('password')
-                },
-                params: {}
+                }
             }
         ).then(response => {
             setOptionalDisciplines(response.data);
@@ -64,9 +60,9 @@ const Contract = () => {
                         </TableHead>
                         <TableBody>
                             {compulsoryDisciplines.map((discipline) => (
-                                <TableRow key={discipline.course.name}>
-                                    <TableCell>{discipline.course.name}</TableCell>
-                                    <TableCell align="center">{discipline.course.noCredits}</TableCell>
+                                <TableRow key={discipline.name}>
+                                    <TableCell>{discipline.name}</TableCell>
+                                    <TableCell align="center">{discipline.noCredits}</TableCell>
                                 </TableRow>
                             ))
 

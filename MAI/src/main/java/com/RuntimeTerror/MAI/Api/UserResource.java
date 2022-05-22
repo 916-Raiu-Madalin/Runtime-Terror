@@ -72,6 +72,18 @@ public class UserResource {
         return ResponseEntity.ok().body(this.disciplinesController.getOptionalDisciplines(year, semester));
     }
 
+    @GetMapping("/disciplines/compulsory/all")
+    @ResponseBody
+    public ResponseEntity<List<Disciplines>> getCompulsoryDisciplines() {
+        return ResponseEntity.ok().body(this.disciplinesController.getCompulsoryDisciplines());
+    }
+
+    @GetMapping("/disciplines/optional/all")
+    @ResponseBody
+    public ResponseEntity<List<Disciplines>> getOptionalDisciplines() {
+        return ResponseEntity.ok().body(this.disciplinesController.getOptionalDisciplines());
+    }
+
     @GetMapping("/courses")
     public ResponseEntity<List<CourseRegistration>> getCourses(@RequestParam String username) {
         return ResponseEntity.ok().body(registrationsController.getRegistrationsForAppUser(username));
