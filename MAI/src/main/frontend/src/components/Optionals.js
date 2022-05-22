@@ -209,6 +209,16 @@ const Optionals = () => {
           autoComplete="semester"
           autoFocus
         />
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          id="year"
+          label="Year"
+          name="year"
+          autoComplete="semester"
+          autoFocus
+        />
         <Button type="submit" fullWidth variant="contained">
           Save
         </Button>

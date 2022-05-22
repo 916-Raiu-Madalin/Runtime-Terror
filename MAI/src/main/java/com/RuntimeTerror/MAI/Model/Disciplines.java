@@ -29,13 +29,16 @@ public class Disciplines {
 
     private Integer noStudents;
 
-    public Disciplines(String name, String type,Teacher teacher, Integer noCredits,Integer semester, Integer noStudents) {
+    private Integer year;
+
+    public Disciplines(String name, String type,Teacher teacher, Integer noCredits,Integer semester, Integer noStudents, Integer year) {
         this.name = name;
         this.type = type;
         this.teacher = teacher;
         this.noCredits = noCredits;
         this.semester= semester;
         this.noStudents = noStudents;
+        this.year = year;
     }
     @ManyToOne
     @JoinColumn(name="teacher_id")

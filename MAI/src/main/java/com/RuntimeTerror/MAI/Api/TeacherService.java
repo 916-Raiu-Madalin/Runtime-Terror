@@ -34,7 +34,8 @@ public class TeacherService {
         }
         Integer noCredits = Integer.parseInt(discipline.get("credits"));
         Integer semester = Integer.parseInt(discipline.get("semester"));
-        PendingDiscipline pendingDiscipline = new PendingDiscipline(discipline.get("discipline"), teacher, noCredits, semester);
+        Integer year = Integer.parseInt(discipline.get("year"));
+        PendingDiscipline pendingDiscipline = new PendingDiscipline(discipline.get("discipline"), teacher, noCredits, semester, year);
         userController.savePendingDiscipline(pendingDiscipline);
         return ResponseEntity.ok().body("Optional successfully added!");
     }
@@ -58,11 +59,9 @@ public class TeacherService {
     }
     @GetMapping("/teachers")
     ResponseEntity<List<Teacher>> getTeachers(){
-        return ResponseEntity.ok().body(this.teacherController.findAll());
+        return ResponseEntity.ok().body(this.teacherController.getAll());
     }
-    @GetMapping("/get_disciplines_all")
-    ResponseEntity<?> getDisciplines(){
-        List<Teacher> teachers = teacherController.findAll();
+
     @GetMapping("/get_registrations/{teacher}")
     ResponseEntity<?> getRegistrations(@PathVariable String teacher) {
         Teacher teacher1 = teacherController.findByUsername(teacher);
