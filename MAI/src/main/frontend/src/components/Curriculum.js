@@ -112,7 +112,7 @@ const Curriculum = () => {
                             <TableRow>
                                 <TableCell sx={{fontWeight: 'bold'}}>Optional Discipline Name</TableCell>
                                 <TableCell sx={{fontWeight: 'bold'}}>Number of ECTS Credits</TableCell>
-                                <TableHead sx={{fontWeight: 'bold'}}>Index</TableHead>
+                                <TableHead sx={{fontWeight: 'bold'}}>Preference Rank</TableHead>
                             </TableRow>
                         </TableHead>
                         <TableBody>
