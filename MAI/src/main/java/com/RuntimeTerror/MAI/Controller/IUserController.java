@@ -44,4 +44,6 @@ public interface IUserController {
     List<CourseRegistration> getRegistrations();
 
     List<CourseRegistration> getRegistrationsForAppUser(String username);
+
+    void enrollToYear(Integer year);
 }

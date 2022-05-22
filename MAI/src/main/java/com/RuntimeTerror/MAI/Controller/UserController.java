@@ -164,4 +164,9 @@ public class UserController implements IUserController, UserDetailsService {
             throw new UsernameNotFoundException("User not found in the database");
         return new org.springframework.security.core.userdetails.User(appUser.getUsername(), appUser.getPassword(), Collections.singleton(new SimpleGrantedAuthority(appUser.getRole().getName())));
     }
+
+    @Override
+    public void enrollToYear(Integer year) {
+
+    }
 }

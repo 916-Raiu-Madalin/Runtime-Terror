@@ -69,12 +69,18 @@ public class UserResource {
     @GetMapping("/disciplines/optional")
     @ResponseBody
     public ResponseEntity<List<Disciplines>> getOptionalDisciplines(@RequestParam Integer year, @RequestParam Integer semester) {
-        System.out.println(year + "<->" + semester);
         return ResponseEntity.ok().body(this.disciplinesController.getOptionalDisciplines(year, semester));
     }
 
     @GetMapping("/courses")
     public ResponseEntity<List<CourseRegistration>> getCourses(@RequestParam String username) {
         return ResponseEntity.ok().body(registrationsController.getRegistrationsForAppUser(username));
+    }
+
+
+    @PostMapping("/enrol")
+    public ResponseEntity<String> enrollToYear(@RequestParam Integer year) {
+        this.userController.enrollToYear(year);
+        return ResponseEntity.ok().body("");
     }
 }
