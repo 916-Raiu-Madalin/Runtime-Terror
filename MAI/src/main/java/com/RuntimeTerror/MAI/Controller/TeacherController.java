@@ -1,5 +1,6 @@
 package com.RuntimeTerror.MAI.Controller;
 
+import com.RuntimeTerror.MAI.Model.Student;
 import com.RuntimeTerror.MAI.Model.Teacher;
 import com.RuntimeTerror.MAI.Repository.TeacherRepository;
 import com.RuntimeTerror.MAI.Repository.UserRepository;
@@ -7,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -25,5 +27,7 @@ public class TeacherController implements ITeacherController {
         return teacherRepository.findByUsername(username);
     }
 
+    @Override
+    public List<Teacher> findAll(){return teacherRepository.findAll();}
 
 }
