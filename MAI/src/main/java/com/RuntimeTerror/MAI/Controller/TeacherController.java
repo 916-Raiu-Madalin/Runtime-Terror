@@ -1,5 +1,6 @@
 package com.RuntimeTerror.MAI.Controller;
 
+import com.RuntimeTerror.MAI.Model.Student;
 import com.RuntimeTerror.MAI.Model.Teacher;
 import com.RuntimeTerror.MAI.Repository.RegisterRepository;
 import com.RuntimeTerror.MAI.Repository.TeacherRepository;
@@ -28,6 +29,8 @@ public class TeacherController implements ITeacherController {
     }
 
     @Override
+    public List<Teacher> findAll(){return teacherRepository.findAll();}
+  
     public void grade(Long courseId, Long studentId, int grade) {
         registerRepository.findByCourseIdAndStudentId(courseId, studentId).setGrade(grade);
     }
@@ -36,6 +39,5 @@ public class TeacherController implements ITeacherController {
     public List<Teacher> getAll() {
         return teacherRepository.findAll();
     }
-
 
 }
