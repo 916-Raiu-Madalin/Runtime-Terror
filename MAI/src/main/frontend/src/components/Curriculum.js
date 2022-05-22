@@ -37,7 +37,13 @@ const Curriculum = () => {
                 year: year, semester: semester
             }
         }).then(response => {
-            setOptionalDisciplines(response.data);
+            let index = 1;
+            let optionalList = []
+            response.data.forEach(el => {
+                optionalList.push({index: index, ...el});
+                index++;
+            });
+            setOptionalDisciplines(optionalList);
         }).catch(err => {
             console.log(err);
         });
@@ -106,12 +112,14 @@ const Curriculum = () => {
                             <TableRow>
                                 <TableCell sx={{fontWeight: 'bold'}}>Optional Discipline Name</TableCell>
                                 <TableCell sx={{fontWeight: 'bold'}}>Number of ECTS Credits</TableCell>
+                                <TableHead sx={{fontWeight: 'bold'}}>Index</TableHead>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {optionalDisciplines.map((discipline) => (<TableRow key={discipline.name}>
                                 <TableCell>{discipline.name}</TableCell>
                                 <TableCell align="center">{discipline.noCredits}</TableCell>
+                                <TableCell align="center" contentEditable={true}>{discipline.index}</TableCell>
                             </TableRow>))}
                         </TableBody>
                     </Table>
