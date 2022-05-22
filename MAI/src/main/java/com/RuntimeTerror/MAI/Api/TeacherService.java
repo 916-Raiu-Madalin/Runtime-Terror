@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -33,7 +34,7 @@ public class TeacherService {
         }
         Integer noCredits = Integer.parseInt(discipline.get("credits"));
         Integer semester = Integer.parseInt(discipline.get("semester"));
-        PendingDiscipline pendingDiscipline = new PendingDiscipline(discipline.get("discipline"), teacher, noCredits,semester);
+        PendingDiscipline pendingDiscipline = new PendingDiscipline(discipline.get("discipline"), teacher, noCredits, semester);
         userController.savePendingDiscipline(pendingDiscipline);
         return ResponseEntity.ok().body("Optional successfully added!");
     }
@@ -44,9 +45,9 @@ public class TeacherService {
         return ResponseEntity.ok().body(teacher1.getDisciplines().stream().filter(discipline -> discipline.getType().equals("optional")).collect(Collectors.toList()));
     }
 
-    @PostMapping("/approve_optional/{id}")
-    ResponseEntity<?> approveOptional(@PathVariable Long id) {
-        userController.approveDiscipline(id);
+    @PostMapping("/approve_optional/{id}/{noStudents}")
+    ResponseEntity<?> approveOptional(@PathVariable Long id, @PathVariable Integer noStudents) {
+        userController.approveDiscipline(id, noStudents);
         return ResponseEntity.ok().body("Optional successfully approved!");
     }
 
@@ -62,6 +63,23 @@ public class TeacherService {
     @GetMapping("/get_disciplines_all")
     ResponseEntity<?> getDisciplines(){
         List<Teacher> teachers = teacherController.findAll();
+    @GetMapping("/get_registrations/{teacher}")
+    ResponseEntity<?> getRegistrations(@PathVariable String teacher) {
+        Teacher teacher1 = teacherController.findByUsername(teacher);
+        Map<String, Set<CourseRegistration>> disciplines = new HashMap<>();
+        teacher1.getDisciplines().forEach(disciplines1 -> disciplines.put(disciplines1.getName(), disciplines1.getRegistrations()));
+        return ResponseEntity.ok().body(disciplines);
+
+    }
+    @PostMapping("/grade/{courseId}/{studentId}/{grade}")
+    ResponseEntity<?> gradeStudent(@PathVariable Long courseId, @PathVariable Long studentId, @PathVariable int grade){
+        teacherController.grade(courseId, studentId, grade);
+        return ResponseEntity.ok().body("Student successfully graded");
+    }
+
+    @GetMapping("/get_disciplines_all")
+    ResponseEntity<?> getDisciplines(){
+        List<Teacher> teachers = teacherController.getAll();
         Map<String, Set<Disciplines>> disciplines = new HashMap<>();
         teachers.forEach(teacher -> disciplines.put(teacher.getName(), teacher.getDisciplines()));
         return ResponseEntity.ok().body(disciplines);

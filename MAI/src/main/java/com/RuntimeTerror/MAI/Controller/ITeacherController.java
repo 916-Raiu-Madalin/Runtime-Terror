@@ -10,6 +10,7 @@ public interface ITeacherController {
      Teacher findByUsername(String username);
 
     List<Teacher> findAll();
+     void grade(Long courseId, Long studentId, int grade);
 
-
+     List<Teacher> getAll();
 }

@@ -2,8 +2,8 @@ package com.RuntimeTerror.MAI.Controller;
 
 import com.RuntimeTerror.MAI.Model.Student;
 import com.RuntimeTerror.MAI.Model.Teacher;
+import com.RuntimeTerror.MAI.Repository.RegisterRepository;
 import com.RuntimeTerror.MAI.Repository.TeacherRepository;
-import com.RuntimeTerror.MAI.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +16,7 @@ import java.util.List;
 
 public class TeacherController implements ITeacherController {
     private final TeacherRepository teacherRepository;
+    private final RegisterRepository registerRepository;
 
     @Override
     public Teacher saveTeacher(Teacher teacher){
@@ -29,5 +30,14 @@ public class TeacherController implements ITeacherController {
 
     @Override
     public List<Teacher> findAll(){return teacherRepository.findAll();}
+  
+    public void grade(Long courseId, Long studentId, int grade) {
+        registerRepository.findByCourseIdAndStudentId(courseId, studentId).setGrade(grade);
+    }
+
+    @Override
+    public List<Teacher> getAll() {
+        return teacherRepository.findAll();
+    }
 
 }
