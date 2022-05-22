@@ -5,13 +5,12 @@ import {
     FormControl, InputLabel, MenuItem, Paper, Select, Stack, Table, TableBody, TableCell, TableRow
 } from "@mui/material";
 
-
 import TableHead from "@mui/material/TableHead";
 import {useEffect, useState} from "react";
 
 const Curriculum = () => {
-    const [year, setYear] = React.useState(1);
-    const [semester, setSemester] = React.useState(1);
+    const [year, setYear] = useState(1);
+    const [semester, setSemester] = useState(1);
 
     const [compulsoryDisciplines, setCompulsoryDisciplines] = useState([]);
     const [optionalDisciplines, setOptionalDisciplines] = useState([]);
@@ -54,7 +53,8 @@ const Curriculum = () => {
 
     useEffect(() => fetchData());
 
-    return (<div>
+    return (
+        <div>
             <FormControl sx={{m: 1, minWidth: 80}}>
                 <InputLabel id="select-year-label">Year</InputLabel>
                 <Select labelId="select-year-label" id="year-label" value={year} label="Year" onChange={changeYear}>
@@ -88,9 +88,9 @@ const Curriculum = () => {
                         </TableHead>
                         <TableBody>
                             {compulsoryDisciplines.map((discipline) => (<TableRow key={discipline.name}>
-                                    <TableCell>{discipline.name}</TableCell>
-                                    <TableCell align="center">{discipline.noCredits}</TableCell>
-                                </TableRow>))
+                                <TableCell>{discipline.name}</TableCell>
+                                <TableCell align="center">{discipline.noCredits}</TableCell>
+                            </TableRow>))
 
                             }
                         </TableBody>
@@ -110,14 +110,15 @@ const Curriculum = () => {
                         </TableHead>
                         <TableBody>
                             {optionalDisciplines.map((discipline) => (<TableRow key={discipline.name}>
-                                    <TableCell>{discipline.name}</TableCell>
-                                    <TableCell align="center">{discipline.noCredits}</TableCell>
-                                </TableRow>))}
+                                <TableCell>{discipline.name}</TableCell>
+                                <TableCell align="center">{discipline.noCredits}</TableCell>
+                            </TableRow>))}
                         </TableBody>
                     </Table>
                 </TableContainer>
             </Stack>
-        </div>);
+        </div>
+    );
 }
 
 export default Curriculum;
