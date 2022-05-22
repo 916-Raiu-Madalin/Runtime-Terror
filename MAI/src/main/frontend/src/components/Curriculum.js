@@ -1,62 +1,43 @@
 import axios from "../api/axios";
-import * as React from 'react'
+
 import TableContainer from "@mui/material/TableContainer";
 import {
-    FormControl,
-    InputLabel,
-    MenuItem,
-    Paper,
-    Select,
-    Stack,
-    Table,
-    TableBody,
-    TableCell,
-    TableRow
+    FormControl, InputLabel, MenuItem, Paper, Select, Stack, Table, TableBody, TableCell, TableRow
 } from "@mui/material";
+
+
 import TableHead from "@mui/material/TableHead";
 import {useEffect, useState} from "react";
 
 const Curriculum = () => {
     const [year, setYear] = React.useState(1);
     const [semester, setSemester] = React.useState(1);
+
     const [compulsoryDisciplines, setCompulsoryDisciplines] = useState([]);
     const [optionalDisciplines, setOptionalDisciplines] = useState([]);
 
 
     function fetchData() {
-        axios(
-            {
-                method: 'GET',
-                url: '/api/disciplines/compulsory',
-                auth: {
-                    username: localStorage.getItem('user'),
-                    password: localStorage.getItem('password')
-                },
-                params: {
-                    year: year,
-                    semester: semester
-                }
+        axios({
+            method: 'GET', url: '/api/disciplines/compulsory', auth: {
+                username: localStorage.getItem('user'), password: localStorage.getItem('password')
+            }, params: {
+                year: year, semester: semester
             }
-        ).then(response => {
+
+        }).then(response => {
             setCompulsoryDisciplines(response.data);
         }).catch(err => {
             console.log(err);
         });
 
-        axios(
-            {
-                method: 'GET',
-                url: '/api/disciplines/optional',
-                auth: {
-                    username: localStorage.getItem('user'),
-                    password: localStorage.getItem('password')
-                },
-                params: {
-                    year: year,
-                    semester: semester
-                }
+        axios({
+            method: 'GET', url: '/api/disciplines/optional', auth: {
+                username: localStorage.getItem('user'), password: localStorage.getItem('password')
+            }, params: {
+                year: year, semester: semester
             }
-        ).then(response => {
+        }).then(response => {
             setOptionalDisciplines(response.data);
         }).catch(err => {
             console.log(err);
@@ -73,8 +54,7 @@ const Curriculum = () => {
 
     useEffect(() => fetchData());
 
-    return (
-        <div>
+    return (<div>
             <FormControl sx={{m: 1, minWidth: 80}}>
                 <InputLabel id="select-year-label">Year</InputLabel>
                 <Select labelId="select-year-label" id="year-label" value={year} label="Year" onChange={changeYear}>
@@ -107,12 +87,10 @@ const Curriculum = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {compulsoryDisciplines.map((discipline) => (
-                                <TableRow key={discipline.name}>
+                            {compulsoryDisciplines.map((discipline) => (<TableRow key={discipline.name}>
                                     <TableCell>{discipline.name}</TableCell>
                                     <TableCell align="center">{discipline.noCredits}</TableCell>
-                                </TableRow>
-                            ))
+                                </TableRow>))
 
                             }
                         </TableBody>
@@ -131,19 +109,15 @@ const Curriculum = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {optionalDisciplines.map((discipline) => (
-                                <TableRow key={discipline.name}>
+                            {optionalDisciplines.map((discipline) => (<TableRow key={discipline.name}>
                                     <TableCell>{discipline.name}</TableCell>
                                     <TableCell align="center">{discipline.noCredits}</TableCell>
-                                </TableRow>
-                            ))
-                            }
+                                </TableRow>))}
                         </TableBody>
                     </Table>
                 </TableContainer>
             </Stack>
-        </div>
-    );
+        </div>);
 }
 
 export default Curriculum;
