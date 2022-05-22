@@ -21,4 +21,14 @@ public class StudentService {
     public ResponseEntity<List<Student>> getStudents(@PathVariable Long group) {
         return ResponseEntity.ok().body(studentController.findByGroup(group));
     }
+
+    @GetMapping("/students/sort/{by}")
+    public ResponseEntity<List<Student>> getStudents(@PathVariable String by){
+        return ResponseEntity.ok().body(studentController.getStudents(by));
+    }
+
+    @GetMapping("/students/year/{year}")
+    public ResponseEntity<List<Student>> getStudents(@PathVariable Integer year) {
+        return ResponseEntity.ok().body(studentController.getStudentsByYear(year));
+    }
 }
