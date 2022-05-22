@@ -25,16 +25,31 @@ public class Disciplines {
 
     private Integer noCredits;
 
-    public Disciplines(String name, String type,Teacher teacher, Integer noCredits) {
+    private Integer year;
+
+    private Integer semester;
+
+    public Disciplines(String name, String type, Teacher teacher, Integer noCredits) {
         this.name = name;
         this.type = type;
         this.teacher = teacher;
         this.noCredits = noCredits;
     }
+
+    public Disciplines(Long id, String name, String type, Integer noCredits, Integer year, Integer semester, Teacher teacher) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.noCredits = noCredits;
+        this.year = year;
+        this.semester = semester;
+        this.teacher = teacher;
+    }
+
     @ManyToOne
-    @JoinColumn(name="teacher_id")
+    @JoinColumn(name = "teacher_id")
     private Teacher teacher;
-  
+
     @JsonIgnore
     @OneToMany(mappedBy = "course")
     @ToString.Exclude
