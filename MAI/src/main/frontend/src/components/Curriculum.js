@@ -57,7 +57,8 @@ const Curriculum = () => {
         setSemester(event.target.value)
     }
 
-    useEffect(() => fetchData());
+    useEffect(() => fetchData(), [year]);
+    useEffect(() => fetchData(), [semester]);
 
     return (
         <div>
