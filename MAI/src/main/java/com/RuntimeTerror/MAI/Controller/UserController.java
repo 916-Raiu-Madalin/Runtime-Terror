@@ -40,11 +40,11 @@ public class UserController implements IUserController, UserDetailsService {
         profile.setId(appUser.getId());
         saveProfile(profile);
         AppUser returnUser = userRepository.save(appUser);
-        if("ROLE_STUDENT".equals(appUser.getRole().getName())){
+        if ("ROLE_STUDENT".equals(appUser.getRole().getName())) {
             Student newStudent = new Student(appUser.getUsername(), appUser.getName());
             studentRepository.save(newStudent);
         }
-        if("ROLE_TEACHER".equals(appUser.getRole().getName()) || "ROLE_TEACHER_CHIEF".equals(appUser.getRole().getName())){
+        if ("ROLE_TEACHER".equals(appUser.getRole().getName()) || "ROLE_TEACHER_CHIEF".equals(appUser.getRole().getName())) {
             Teacher newTeacher = new Teacher(appUser.getUsername(), appUser.getName());
             teacherRepository.save(newTeacher);
         }
@@ -140,6 +140,16 @@ public class UserController implements IUserController, UserDetailsService {
     @Override
     public List<Disciplines> getCompulsoryDisciplines() {
         return this.disciplineRepository.findAll().stream().filter(discipline -> discipline.getType().equals("compulsory")).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Disciplines> getCompulsoryDisciplines(Integer year, Integer semester) {
+        return this.disciplineRepository.findAll().stream().filter(discipline -> "compulsory".equals(discipline.getType()) && year.equals(discipline.getYear()) && semester.equals(discipline.getSemester())).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Disciplines> getOptionalDisciplines(Integer year, Integer semester) {
+        return this.disciplineRepository.findAll().stream().filter(discipline -> "optional".equals(discipline.getType()) && year.equals(discipline.getYear()) && semester.equals(discipline.getSemester())).collect(Collectors.toList());
     }
 
     @Override
