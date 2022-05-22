@@ -28,9 +28,6 @@ public class TeacherController implements ITeacherController {
         return teacherRepository.findByUsername(username);
     }
 
-    @Override
-    public List<Teacher> findAll(){return teacherRepository.findAll();}
-  
     public void grade(Long courseId, Long studentId, int grade) {
         registerRepository.findByCourseIdAndStudentId(courseId, studentId).setGrade(grade);
     }
