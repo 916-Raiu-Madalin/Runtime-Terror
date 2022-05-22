@@ -33,6 +33,17 @@ public class Student {
 
     private String name;
 
+    private Integer currentYear;
+    private Integer sem1Grade;
+    private Integer sem2Grade;
+    private Integer year1Grade;
+    private Integer sem3Grade;
+    private Integer sem4Grade;
+    private Integer year2Grade;
+    private Integer sem5Grade;
+    private Integer sem6Grade;
+    private Integer year3Grade;
+
     @JsonIgnore
     @OneToMany(mappedBy = "student")
     @ToString.Exclude

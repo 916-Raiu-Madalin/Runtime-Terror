@@ -23,7 +23,9 @@ const Bar = () =>{
         pages.push("contract")
       if(role == "ROLE_TEACHER_CHIEF") {
           pages.push("approve_optionals")
-          pages.push("teachers");
+          pages.push("teachers");}
+      if(role == "ROLE_STAFF"){
+        pages.push("documents")
       }
 
     const settings = ['Profile', 'Logout']

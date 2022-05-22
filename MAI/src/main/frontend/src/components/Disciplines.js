@@ -69,6 +69,7 @@ const Disciplines=()=>{
             }
         }).then(response =>{
             // rows=response.data;
+            console.log(response.data)
             setRows(response.data);
 
         }).catch(err=>{
