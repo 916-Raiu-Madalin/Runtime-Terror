@@ -17,8 +17,8 @@ import TableHead from "@mui/material/TableHead";
 import {useEffect, useState} from "react";
 
 const Curriculum = () => {
-    const [year, setYear] = React.useState('1');
-    const [semester, setSemester] = React.useState('1');
+    const [year, setYear] = React.useState(1);
+    const [semester, setSemester] = React.useState(1);
     const [compulsoryDisciplines, setCompulsoryDisciplines] = useState([]);
     const [optionalDisciplines, setOptionalDisciplines] = useState([]);
 
@@ -32,7 +32,10 @@ const Curriculum = () => {
                     username: localStorage.getItem('user'),
                     password: localStorage.getItem('password')
                 },
-                params: {}
+                params: {
+                    year: year,
+                    semester: semester
+                }
             }
         ).then(response => {
             setCompulsoryDisciplines(response.data);
@@ -65,10 +68,10 @@ const Curriculum = () => {
     }
 
     function changeSemester(event) {
-        setSemester(event.target.value);
+        setSemester(event.target.value)
     }
 
-    useEffect(fetchData, []);
+    useEffect(() => fetchData());
 
     return (
         <div>
