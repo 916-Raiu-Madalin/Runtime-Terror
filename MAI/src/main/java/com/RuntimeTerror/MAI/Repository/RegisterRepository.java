@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface RegisterRepository extends JpaRepository<CourseRegistration, Long> {
     List<CourseRegistration> findCourseRegistrationByStudent_Username(String username);
+    CourseRegistration findByCourseIdAndStudentId(Long courseId, Long studentId);
 }

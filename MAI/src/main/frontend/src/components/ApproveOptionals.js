@@ -1,6 +1,6 @@
 import axios from "../api/axios";
 import TableContainer from "@mui/material/TableContainer";
-import {Paper, Stack, Table, TableBody, TableCell, TableRow} from "@mui/material";
+import {Paper, Box, TextField, Stack, Table, TableBody, TableCell, TableRow} from "@mui/material";
 import TableHead from "@mui/material/TableHead";
 import {useEffect, useState} from "react";
 import DoneIcon from '@mui/icons-material/Done';
@@ -16,6 +16,18 @@ const ApproveOptionals = () => {
             console.log(err);
         });
         fetchData()
+    }
+    const handleSubmit = (event) =>{
+        event?.preventDefault()
+        const data = new FormData(event.currentTarget);
+        axios({
+            method:'POST',
+            url:'/api/approve_optional/'+data.get("id")+"/" + data.get('noStudents'),
+            auth: {
+                username: localStorage.getItem('user'),
+                password: localStorage.getItem('password')
+            },
+        })
     }
 
     function fetchData() {
@@ -61,7 +73,27 @@ const ApproveOptionals = () => {
                             <TableCell>{discipline.name}</TableCell>
                             <TableCell>{discipline.teacher.name}</TableCell>
                             <TableCell align="right">{discipline.noCredits}</TableCell>
-                            <TableCell align="right"><Button variant="contained" onClick={ () => { approveOptional(discipline.id)}}endIcon={<DoneIcon/>} aria-label="Approve optional">Approve</Button></TableCell>
+                            <TableCell align="right">
+                                <Box component="form" onSubmit={handleSubmit}>
+                                    <TextField
+                                    name="id"
+                                    value={discipline.id}
+                                    sx={{display:'none'}}
+                                    />
+                                <TextField
+                                required
+                                size="small"
+                                id="noStudents"
+                                label="Maximum number of students"
+                                name="noStudents"
+                                autoComplete="noStudents"
+                                autoFocus
+                                />
+                                <Button type="submit" variant="contained" endIcon={<DoneIcon/>} aria-label="Approve optional">Approve
+                                </Button>
+                                </Box>
+                             </TableCell>
+                        
                         </TableRow>
                     ))
 
