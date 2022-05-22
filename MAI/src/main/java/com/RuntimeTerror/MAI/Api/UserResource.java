@@ -63,12 +63,22 @@ public class UserResource {
     @ResponseBody
     public ResponseEntity<List<Disciplines>> getCompulsoryDisciplines(@RequestParam Integer year, @RequestParam Integer semester) {
         System.out.println(year + "<->" + semester);
+        if(semester%2==0){
+            semester = year *2;
+        }
+        else
+            semester = year*2-1;
         return ResponseEntity.ok().body(this.disciplinesController.getCompulsoryDisciplines(year, semester));
     }
 
     @GetMapping("/disciplines/optional")
     @ResponseBody
     public ResponseEntity<List<Disciplines>> getOptionalDisciplines(@RequestParam Integer year, @RequestParam Integer semester) {
+        if(semester%2==0){
+            semester = year *2;
+        }
+        else
+            semester = year*2-1;
         return ResponseEntity.ok().body(this.disciplinesController.getOptionalDisciplines(year, semester));
     }
 

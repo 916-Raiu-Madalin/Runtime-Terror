@@ -32,7 +32,7 @@ const Teachers = () => {
     useMountEffect(fetchData);
 
     return (
-        <Stack sx={{marginTop:4}} component={Paper} direction="row" spacing={10} maxWidth={800} marginLeft={"auto"} marginRight={"auto"}>
+        <Stack sx={{marginTop:4}}  direction="row" spacing={10} maxWidth={800} marginLeft={"auto"} marginRight={"auto"}>
 
             {Object.keys(rows).map(row => (
                 <TableContainer >
