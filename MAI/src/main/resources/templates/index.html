@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a th:href="@{/api/users}"> See users </a></li>
+        <li sec:authorize="hasRole('ROLE_STUDENT')">YOU ARE A STUDENT</li>
+        <li sec:authorize="hasRole('ROLE_TEACHER')">YOU ARE A TEACHER</li>
+        <li sec:authorize="hasRole('ROLE_STUDENT')"><a th:href="@{/student}"> Student zone</a></li>
+        <li sec:authorize="hasRole('ROLE_TEACHER')"><a th:href="@{/teacher}"> Teacher zone</a></li>
+    </ul>
+</nav>
+HELLO WORLD
+
+<form class="form" form-method="post" th:action="@{/logout}">
+    <button sec:authorize="isAuthenticated()" class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Logout</button>
+    <button sec:authorize="isAnonymous()" th:href="@{~/login}" class="btn btn-outline-info my-2 my-sm-0 btn-sm" type="submit">Login</button>
+</form>
+</body>
+</html>
