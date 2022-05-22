@@ -7,6 +7,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -47,6 +51,18 @@ public class TeacherService {
         return ResponseEntity.ok().body("Optional successfully approved!");
     }
 
+    @GetMapping("/get_disciplines/{teacher}")
+    ResponseEntity<?> getDisciplines(@PathVariable String teacher) {
+        Teacher teacher1 = teacherController.findByUsername(teacher);
+        return ResponseEntity.ok().body(teacher1.getDisciplines());
+    }
+    @GetMapping("/teachers")
+    ResponseEntity<List<Teacher>> getTeachers(){
+        return ResponseEntity.ok().body(this.teacherController.findAll());
+    }
+    @GetMapping("/get_disciplines_all")
+    ResponseEntity<?> getDisciplines(){
+        List<Teacher> teachers = teacherController.findAll();
     @GetMapping("/get_registrations/{teacher}")
     ResponseEntity<?> getRegistrations(@PathVariable String teacher) {
         Teacher teacher1 = teacherController.findByUsername(teacher);

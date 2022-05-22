@@ -21,8 +21,11 @@ const Bar = () =>{
         pages.push("grade")}
       if(role == "ROLE_STUDENT")
         pages.push("contract")
-      if(role == "ROLE_TEACHER_CHIEF")
-        pages.push("approve_optionals")
+      if(role == "ROLE_TEACHER_CHIEF") {
+          pages.push("approve_optionals")
+          pages.push("teachers");
+      }
+
     const settings = ['Profile', 'Logout']
     const handleOpenNavMenu = (event) =>{
         setAnchorElNav(event.currentTarget)
