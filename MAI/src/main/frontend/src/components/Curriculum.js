@@ -116,11 +116,12 @@ const Curriculum = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {optionalDisciplines.map((discipline) => (<TableRow key={discipline.name}>
-                                <TableCell>{discipline.name}</TableCell>
-                                <TableCell align="center">{discipline.noCredits}</TableCell>
-                                <TableCell align="center" contentEditable={true}>{discipline.index}</TableCell>
-                            </TableRow>))}
+                            {optionalDisciplines.sort((a, b) => a.index - b.index).map((discipline) => (
+                                <TableRow key={discipline.name}>
+                                    <TableCell>{discipline.name}</TableCell>
+                                    <TableCell align="center">{discipline.noCredits}</TableCell>
+                                    <TableCell align="center" contentEditable={true}>{discipline.index}</TableCell>
+                                </TableRow>))}
                         </TableBody>
                     </Table>
                 </TableContainer>
