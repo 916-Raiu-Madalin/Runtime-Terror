@@ -32,4 +32,11 @@ public interface IUserController {
     List<CourseRegistration> getRegistrations();
 
     List<CourseRegistration> getRegistrationsForAppUser(String username);
+<<<<<<< Updated upstream
+=======
+
+    CourseRegistration getRegistrationByName(String name);
+
+    void enrollToYear(Integer year);
+>>>>>>> Stashed changes
 }

@@ -65,4 +65,22 @@ public class UserResource {
     public ResponseEntity<List<CourseRegistration>> getCourses(@RequestParam String username) {
         return ResponseEntity.ok().body(registrationsController.getRegistrationsForAppUser(username));
     }
+<<<<<<< Updated upstream
+=======
+
+        @PostMapping("/courses")
+    public ResponseEntity<?> setCourses(@RequestParam Map<String, String> profile) {
+        AppUser user = userController.getUser(profile.get("username"));
+        CourseRegistration course = registrationsController.getRegistrationByName(profile.get("course_name"));
+        userController.saveRegistration(course);
+        return ResponseEntity.ok().body(profile);
+    }
+
+
+    @PostMapping("/enrol")
+    public ResponseEntity<String> enrollToYear(@RequestParam Integer year) {
+        this.userController.enrollToYear(year);
+        return ResponseEntity.ok().body("");
+    }
+>>>>>>> Stashed changes
 }

@@ -1,6 +1,6 @@
 import axios from "../api/axios";
 import TableContainer from "@mui/material/TableContainer";
-import {Container, Button, Paper, Stack, Table, TableBody, TableCell, TableRow} from "@mui/material";
+import {Container, Button, Paper, Stack, Table, TableBody, Box, TableCell, TableRow} from "@mui/material";
 import TableHead from "@mui/material/TableHead";
 import {React, useEffect, useState} from "react";
 
@@ -45,10 +45,28 @@ const Contract = () => {
         });
     }
 
+    const handleSubmit = (event) => {
+        var Buffer = require('buffer/').Buffer
+
+        event.preventDefault();
+        const data = new FormData(event.currentTarget)
+        data.set('username', localStorage.getItem('user'))
+        axios({
+            method: 'post', url: '/api/courses', headers: {
+                'Authorization': 'Basic ' + Buffer.from(localStorage.getItem('user') + ':' + localStorage.getItem('password')).toString('base64'),
+                'Content-Type': 'multipart/form-data'
+            },
+            data: data,
+            course_name: compulsoryDisciplines[0].name
+        }).then(response => console.log(response?.data))
+            .catch(err => console.log(err))
+
+    }
     useEffect(fetchData, []);
 
     return (
         <Container component="main" maxWidth="xl">
+            <Box onSubmit={handleSubmit} component="form" noValidate>
             <Stack direction="row" spacing={2}>
                 <TableContainer component={Paper}>
                     <Table aria-label="Compulsory Disciplines" title="Compulsory Disciplines">
@@ -105,6 +123,7 @@ const Contract = () => {
                 fullWidth
                 variant="contained"
             >Sign Contract</Button>
+            </Box>
         </Container>
     );
 }
